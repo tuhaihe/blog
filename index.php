@@ -51,7 +51,7 @@
 		foreach($posts as $post_file)
 		{
 				if($n > 0)
-					echo("\n\n\n");
+					echo("\n");
 				echo("<hr />");
 				$post = file_get_contents($dir . "/" . $post_file);
 				list($post, $links) = remove_links($post);
