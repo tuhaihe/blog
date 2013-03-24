@@ -26,7 +26,7 @@
 
 	$config = array();
 	$config['site_name'] = "TUHAIHE";
-	$config['site_url'] = "http://blog.gubuntu.info/";
+	$config['site_url'] = "http://tuhaihe.com/";
 	$config['site_author'] = "tuhaihe";
 	$config['site_author_email'] = "1132321739qq AT gmail dot com";
 
@@ -60,7 +60,7 @@
 				echo($post);
 				$n++;
 		}
-		echo("\n\n\n<hr />");
+		echo("\n<hr />");
 		
 		closedir($handle);
 	} 
