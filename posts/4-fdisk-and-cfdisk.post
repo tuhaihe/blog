@@ -2,7 +2,7 @@
 [关键词] fdisk, cfdisk, 磁盘分区
 [发布时间] 2013年03月31日星期日 20:55:02
 
-fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，如 Debian 等系统图形界面安装过程中有很好的图形工具，一般不会用到该工具，但在尝试 Gentoo 过程中，就会遇到该工具了。
+fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，如 Debian 等系统图形界面安装过程中有很好的图形工具，一般不会用它，但在尝试 Gentoo 过程中，就遇到该工具了。
 
 
 ## 常用参数简介
@@ -23,7 +23,7 @@ fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，
 ## 使用 fdisk 创建分区、删除分区
 
 * 以 8G U盘作为实验对象，U 盘设备名称是 /dev/sdc。输入下面命令即可进入 fdisk 的交互界面。
-
+  
   sudo fdisk /dev/sdc
 
 我们会看到相应的输出结果：
@@ -36,7 +36,7 @@ fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，
   
   Command (m for help): ①
   
-我们在 ① 处输入 m，可以查看到许多操作参数，和我们最密切的有下面三个：
+我们在 ① 处输入 m，可以查看到许多操作参数，和我们最密切的有下面五个：
 
    d   delete a partition，删除分区
    n   add a new partition，新建分区
@@ -44,10 +44,9 @@ fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，
    q   quit without saving changes，退出，但不保存对现有分区作出的任何更改
    w   write table to disk and exit，将对分区表的更改写入磁盘（慎用！）
    
-   
-具体创建分区、删除分区步骤，可参考 [link]鸟哥私房菜站点， http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#fdisk[/link]，多练习几次就可以熟悉了。建议，可以建立一个虚拟机，在虚拟机进行测试，这样不会对用户数据造成毁灭性破坏。同时也要慎用 w 参数，拿捏不准干脆“q”一走了之。在创建完分区，[link]格式化分区, http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#format[/link]时，注意交换分区(swap)分区格式化(mkswap /dev/*)后，还需要执行 swapon 来启动交换分区。
+具体创建分区、删除分区步骤，可参考 [link]鸟哥私房菜站点, http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#fdisk[/link]，多练习几次就可以熟悉了。建议，可以建立一个虚拟机，在虚拟机进行测试，这样不会对用户数据造成毁灭性破坏。同时也要慎用 w 参数，拿捏不准干脆“q”一走了之。在创建完分区，[link]格式化分区, http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#format[/link]时，注意交换分区(swap)分区格式化(mkswap /dev/*)后，还需要执行 swapon 来启动交换分区。
 
-该命令应用实例也可参考 [link]Gentoo 手册：准备磁盘, http://www.gentoo.org/doc/zh_cn/handbook/handbook-x86.xml?part=1&chap=4[/link]
+该命令应用实例也可参考 [link]Gentoo 手册：准备磁盘, http://www.gentoo.org/doc/zh_cn/handbook/handbook-x86.xml?part=1&chap=4[/link]。
 
 
 ##  cfdisk：更加直观的分区命令
