@@ -4,8 +4,7 @@
 
 ## Graphviz 简介
 
-图形可视化是结构信息的重要表达方式，[link]Graphviz, http://www.graphviz.org[/link]（Graph Visualization Software） 就是一款开源的图形可视化软件。它支持
-[link]DOT, http://en.wikipedia.org/wiki/DOT_language[/link] 脚本语言进行图形绘制。而 DOT 则是一种纯文本式的图形描述脚本语言，文件扩展名多以 .dot 和 .gv 结束。
+图形可视化是结构信息的重要表达方式，[link]Graphviz, http://www.graphviz.org[/link]（Graph Visualization Software） 就是一款开源的图形可视化软件。它支持[link]DOT, http://en.wikipedia.org/wiki/DOT_language[/link] 脚本语言进行图形绘制。而 DOT 则是一种纯文本式的图形描述脚本语言，文件扩展名多以 .dot 和 .gv 结束。
 
 当然，绘制结构图/流程图的图形界面应用程序如 Dia 等更加简单易用，但当我们所绘制的图形结构十分复杂时，使用图形界面程序容易造成混乱。此时，使用纯文本描述的优势就显示出来了。
 
