@@ -8,17 +8,20 @@
 			 white-space: -pre-wrap;      /* Opera 4-6 */
 			 white-space: -o-pre-wrap;    /* Opera 7 */
 			 word-wrap: break-word;       /* Internet Explorer 5.5+ */
- text-align: justify;
- max-width: 600px;/*1024*/
- width: expression((document.body.clientWidth > 1024)? "1024px" : "auto");*/ ) + "px");
- margin: 0 auto;
- background-color: #f0f0f0;
- filter:alpha(opacity=90);
- opacity:0.9;
- padding: 1em 2em;
+			 text-align: justify;
+                         max-width: 600px;/*1024*/
+                         width: expression((document.body.clientWidth > 1024)? "1024px" : "auto");*/ ) + "px");
+			 margin: 0 auto;
+			 background-color: #f0f0f0;
+			 filter:alpha(opacity=90);
+			 opacity:0.9;
+			 padding: 1em 2em;
 
 			}
 		</style>
+		<title>TUHAIHE</title>
+		 <meta name="description" content="personal blog about Linux, open source, community. 关于 Linux、开源、社区的个人博客，笨兔兔博客">
+		 <meta name="keywords" content="linux, open source, debian, mageia, blog, community, 开源, 社区, debian, mageia, 博客, bentutu, 笨兔兔, tuhaihe, TUHAIHE">
 	</head>
 	<body>
 <?php
