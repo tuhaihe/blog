@@ -12,7 +12,7 @@
  max-width: 600px;/*1024*/
  width: expression((document.body.clientWidth > 1024)? "1024px" : "auto");*/ ) + "px");
  margin: 0 auto;
- background-color: #ffffff;
+ background-color: #f0f0f0;
  filter:alpha(opacity=90);
  opacity:0.9;
  padding: 1em 2em;
