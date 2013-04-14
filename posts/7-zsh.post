@@ -27,8 +27,7 @@ Zsh 配置文件为 ~/.zshrc（个人配置） 和 /etc/zshrc（系统全局）�
 
 ## 更多定制：oh-my-zsh
 
-当首次以 zsh 打开终端模拟器时，会弹出提示：[link]click,
-http://upload.wikimedia.org/wikipedia/commons/9/99/Zsh-new-user.png[/link](图片来自 Wikipedia)。直接忽略即可，下面使用 Oh-my-zsh 利器帮助我们进行定制。
+当首次以 zsh 打开终端模拟器时，会弹出提示：[link]click, http://upload.wikimedia.org/wikipedia/commons/9/99/Zsh-new-user.png[/link](图片来自 Wikipedia)。直接忽略即可，下面使用 Oh-my-zsh 利器帮助我们进行定制。
 
 A：下载 & 安装 oh-my-zsh（二选一）：
 
