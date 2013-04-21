@@ -1,1 +1,1 @@
-tuhaihe.com blog
+tuhaihe.com blog powered by Emacs orgmode.

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Oh my Zsh!</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Oh my Zsh!"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-04-21T22:13+0800"/>
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link href="css/org.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/org-info.js">
+/**
+ *
+ * @source: js/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in js/org-info.js.
+ *
+ * Copyright (C) 2012-2013  Sebastian Rose
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in js/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "index.html");
+org_html_manager.set("LINK_UP", "index.html");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "#dddddd");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "0");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Oh my Zsh!</h1>
+
+
+<script src="js/bootstrap.js"></script>
+
+<p>
+Zsh 是一款功能强大的交互式 shell，与 Bash 相比，Zsh 下面几点表现令人印象深刻：
+</p>
+<ul>
+<li>自动补全
+</li>
+<li>拼写纠错
+</li>
+<li>定制性强
+</li>
+<li>美观的命令提示符（这点吸引力最大）
+</li>
+</ul>
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">安装</a></li>
+<li><a href="#sec-2">设为默认 Shell</a></li>
+<li><a href="#sec-3">更多定制：oh-my-zsh</a></li>
+<li><a href="#sec-4">相关链接</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">安装</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<ul>
+<li>Debian 系列： <code>sudo apt-get install zsh</code>
+</li>
+<li>Mageia ： <code>sudo urpmi zsh</code>
+</li>
+</ul>
+
+
+<p>
+查看是否已经安装：运行 <code>cat /etc/shells</code> 或 <code>chsh -l</code> ，如果已经安装，则会看到输出结果中有 <code>/bin/zsh</code> 一行内容。
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">设为默认 Shell</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Zsh 配置文件为 <code>~/.zshrc</code> （个人配置） 和 <code>/etc/zshrc</code> （系统全局）。
+</p>
+<p>
+将 Zsh 设为终端模拟器默认使用的 Shell：
+</p>
+
+
+
+<pre class="example">$ chsh -s zsh #不必以 root 身份运行，但需要输入管理员密码
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">更多定制：oh-my-zsh</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+当首次以 zsh 打开终端模拟器时，会弹出提示：<a href="http://upload.wikimedia.org/wikipedia/commons/9/99/Zsh-new-user.png">click</a>(图片来自 Wikipedia)。直接忽略即可，下面使用 Oh-my-zsh 利器帮助我们进行定制。
+</p>
+<ol>
+<li>下载 &amp; 安装 oh-my-zsh（二选一）：
+
+<p>
+   ①通过 curl 
+</p></li>
+</ol>
+
+
+
+
+
+<pre class="example">curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</pre>
+
+
+<p>
+②通过 wget
+</p>
+
+
+
+<pre class="example">wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+</pre>
+
+
+<ol>
+<li>命令提示符主题设置
+</li>
+</ol>
+
+
+
+
+
+<pre class="example">$ cd ~/.oh-my-zsh/tools
+$ ./theme_chooser.sh #主题选择工具
+</pre>
+
+
+<p>    
+部分提示符主题截图可查看 oh-my-zsh wiki，手动修改 <code>~/.zshrc</code> 文件中 <code>ZSH_THEME</code> 一行内容，设置自己喜欢的主题。
+</p>
+<ol>
+<li>插件
+</li>
+</ol>
+
+
+<p>
+oh-my-zsh 提供了 100 多个插件，可根据自己需求来设置。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">相关链接</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<ul>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh/wiki">oh-my-zsh wiki</a>
+</li>
+<li><a href="https://wiki.archlinux.org/index.php/Zsh_(简体中文)">Archlinux Wiki</a>
+</li>
+<li><a href="http://zh.opensuse.org/SDB:Zsh">OpenSUSE Wiki</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="postamble">Update time: 2013-04-21T22:13+0800.</p> 
+</div>
+</body>
+</html>

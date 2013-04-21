@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Tar、zipg2、zip</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Tar、zipg2、zip"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-04-21T22:12+0800"/>
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link href="css/org.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/org-info.js">
+/**
+ *
+ * @source: js/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in js/org-info.js.
+ *
+ * Copyright (C) 2012-2013  Sebastian Rose
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in js/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "index.html");
+org_html_manager.set("LINK_UP", "index.html");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "#dddddd");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "0");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Tar、zipg2、zip</h1>
+
+
+<script src="js/bootstrap.js"></script>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Tar(tape archiver)</a></li>
+<li><a href="#sec-2">压缩命令 gzip</a></li>
+<li><a href="#sec-3">压缩命令 bzip2</a>
+<ul>
+<li><a href="#sec-3-1">使用举例</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">更多：zip &amp; rar</a></li>
+<li><a href="#sec-5">参考链接</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Tar(tape archiver)</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+它起初被用来在磁带上创建归档文件。Tar 最基本的功能就是把众多文件集合在一个文件中（生成归档文件），避免文件零散摆放，并不包括压缩功能（降低文件硬盘占有空间）。Tar 只有和其他压缩命令结合在一起，才能发挥压缩文件功能。
+</p>
+<p>
+常用参数： 
+</p>
+<ul>
+<li>-c, &ndash;create          建立新归档文件
+</li>
+<li>-t, &ndash;list            列出归档中的文件目录
+</li>
+<li>-x, -extract          解包/解压缩
+</li>
+<li>-j, &ndash;bzip2, &ndash;bunzip2        用bzip2压缩/解压缩归档                  
+</li>
+<li>-z, &ndash;gzip, &ndash;ungzip  用gzip压缩/解压缩归档
+</li>
+<li>-v, &ndash;verbose         详细显示处理的文件
+</li>
+<li>-f, &ndash;file            指定归档文件
+</li>
+<li>-C, &ndash;directory DIR   解压到指定目录
+</li>
+<li>-Z, &ndash;(un)compress
+</li>
+</ul>
+
+
+
+<p>
+了解了上面常用的参数选项后，基本了解了如何归档/压缩/解压缩日常面临的对应文件了。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">压缩命令 gzip</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+使用 gzip 压缩后的文件名后缀常为 .gz；解压缩支持由 gzip、zip、compress 产生的压缩文件格式，所以支持 .gz, -gz, .z, -z, <sub>z</sub>, .Z 结尾并具有正确标志头的文件。同时，它也可以识别 .tgz(-&gt; .tar.gz) 和 .taz(-&gt; .tar.Z)
+我们总结下，结尾包括下列的压缩文件皆可用 gzip 解压：
+</p>
+<ul>
+<li>.gz
+</li>
+<li>-gz
+</li>
+<li>.z
+</li>
+<li>-z
+</li>
+<li><sub>z</sub>
+</li>
+<li>.Z
+</li>
+<li>tar.gz(解为 tar 包, tar 解压缩时结合参数 -z)
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">压缩命令 bzip2</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+bzip2 支持解压缩的文件格式：
+</p>
+<ul>
+<li>.bz2
+</li>
+<li>.bz
+</li>
+<li>.tbz2（tar 解压缩时结合参数 -j）
+</li>
+<li>.tbz(同上)
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">使用举例</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<p>
+① 解开 *.tar
+</p>
+
+
+
+<pre class="example">abc.tar --&gt; tar xvf abc.tar
+</pre>
+
+
+<p>
+② 解压缩 *.tar.gz / *.tgz
+</p>
+
+
+
+
+<pre class="example">abc.tar.gz --&gt; tar zxvf abc.tar.gz
+abc.tgz --&gt; tar zxvf abc.tar.gz
+</pre>
+
+
+<p>
+③ 解压缩 *.tar.bz2 / *.tbz
+</p>
+
+
+
+<pre class="example">abc.tar.bz2 --&gt; tar jxvf abc.tar.bz2
+abc.tbz --&gt; tar jxvf abc.tbz
+</pre>
+
+
+
+<p>
+④ 解压缩 *.tar.Z
+</p>
+
+
+
+<pre class="example">abc.tar.Z --&gt; tar -Zxvf abc.tar.Z 
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">更多：zip &amp; rar</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+tar 和 gzip\bzip2 往往联合使用，后者常针对单个文件进行解压/压缩，但无“”打包”功能。
+</p>
+<p>
+zip：pacakge and comrepss(archive) files.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">参考链接</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<ul>
+<li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress_3.php">鸟哥的私房菜</a>
+</li>
+<li><a href="http://tldp.org/LDP/GNU-Linux-Tools-Summary/html/backing-up-files.html">GNU/Linux Command Line Tools Summary: Archiving Files</a>
+</li>
+<li><a href="https://wiki.archlinux.org/index.php/Tar">Archlinux Wiki:Tar</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="postamble">Update time: 2013-04-21T22:12+0800.</p> 
+</div>
+</body>
+</html>
