@@ -57,6 +57,13 @@ body {
     	padding:20px 400px;
    	text-align:justify;
     	max-width:600px;
+    	/*orginal 
+    	padding-top: 40px;
+    	padding-bottom: 40px;	
+    	padding-left: 250px;
+    	padding-right:250px;
+    	text-align:left;
+    	max-width:650px;*/
 }
 
 blockquote p {
