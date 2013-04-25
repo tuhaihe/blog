@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>TUHAIHE</title>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<meta name="title" content="TUHAIHE"/>
+<title>Chakra：GTK Free！</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Chakra：GTK Free！"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-04-21T22:05+0800"/>
+<meta name="generated" content="2013-04-25T23:46+0800"/>
 <meta name="author" content="tuhaihe"/>
-<meta name="description" content="personal blog about Linux, open source, community. 关于 Linux、开源、社区的个人博客，笨兔兔博客"/>
-<meta name="keywords" content="linux, open source, debian, mageia, blog, community, 开源, 社区, debian, mageia, 博客, bentutu, 笨兔兔, tuhaihe, TUHAIHE"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
 
 <link href="css/org.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -136,62 +136,155 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
  <a accesskey="H" href="index.html"> HOME </a>
 </div>
 
-<div id="content">
+<div id="preamble">
 
-  <h1 class="title">TUHAIHE</h1>
+</div>
+
+<div id="content">
+<h1 class="title">Chakra：GTK Free！</h1>
+
 
 <script src="js/bootstrap.js"></script>
+
 
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Post list</a></li>
+<li><a href="#sec-1">关于 Chakra</a></li>
+<li><a href="#sec-2">Bundle 系统：让非 Qt 程序顺利运行</a></li>
+<li><a href="#sec-3">基本配置</a></li>
 </ul>
-</div>
-
-</div>
-
-<div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">文章列表</h2>
-<div class="outline-text-2" id="text-1">
-<div id="content">
-<ul>
-<li><a href="chakra-experience.html">Chakra：GTK free!</a></li>
-<li><a href="simplicity-design.html">《简约至上》读书摘抄</a></li>
-<li><a href="oh-my-zsh.html">Oh my Zsh!</a></li>
-<li><a href="tar-zip2-gzip.html">Tar、zipg2、zip</a>
-<li><a href="fdisk.html">fdisk: 磁盘分区命令</a></li>
-<li><a href="baogongan-note.html">《包公案》</a></li>
-<li><a href="nano.html">GNU Nano 编辑器简介</a></li>
-</ul>
-</div>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2>我的活动</h2>
+<h2 id="sec-1">关于 Chakra</h2>
 <div class="outline-text-2" id="text-1">
-<div id="content">
+
+
+<p>
+  <a href="http://www.chakra-project.org">Chakra project</a> 最显著的特点：它是一个“GTK free”（去 GTK 化）、纯 KDE 发行版本，主要运行基于 Qt 的应用程序。
+</p>
+<p>
+  Chakra 安装程序使用图形化安装工具 Tribe<sup><a class="footref" name="fnr-.1" href="#fn-.1">1</a></sup>，帮助大家轻松进行初始化配置，并将 Chakra 安装到硬盘上。相比 Arch Linux 文本安装界面来说，对用户更加友好。
+</p>
+<p>
+  关于 Chakra 的历史，官方给了相关介绍：
+</p>
 <ul>
-<li><a href="https://translations.launchpad.net/~tuhaihe/+activity" target="_blank">Translation on Launchpad</a></li>
-<li><a href="https://www.transifex.com/accounts/profile/1132321739qq/" target="_blank">Translation on Transifex</a></li>
-<li><a href="http://l10n.gnome.org/users/tuhaihe/" target="_blank">Gnome L10N Contribution</a></li>
-<li><a href="https://github.com/tuhaihe" target="_blank">Github</a></li>
-<li>新浪微博</li>
-<div align="left"><a href="http://weibo.com/u/1783565584?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1783565584/e6bef170/1.png"/></a></div>		  
-<li>豆瓣音乐</li>
-<div align="left"><script type="text/javascript" src="http://www.douban.com/service/badge/tuhaihe/?show=collection&amp;n=4&amp;columns=4&amp;hidelogo=yes&amp;hideself=yes" ></script></div>
+<li>Arch Linux 与 KDEmod：2006 年 6 月，KDEmod 项目诞生。随着该项目的流行，2008 年 12 月开发者开发了一款安装器（Tribe）并以 Arch+KDEmod+Tribe 模式发布了第一个 ISO。此时，还只是 Arch Linux 套上了一层 KDEmod 外壳。
+</li>
+<li>随着发布了几个版本，项目主要创始人 Jan Mette（于2010年去世）希望将项目从 Arch 脱离出来建立一个独立的 LiveCD。2010 年 5 月份开发者发布了第一个构建版本。同时，项目组结束了 KDEmod 的开发，转为“Chakra 项目”。由此，Chakra 项目诞生。
+</li>
 </ul>
+
+
+<p>
+ Chakra 一词源自梵文，在印度瑜伽体系中指分布于人体各部位的能量中枢<sup><a class="footref" name="fnr-.2" href="#fn-.2">2</a></sup>。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Bundle 系统：让非 Qt 程序顺利运行</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+  既然 Chakra 是一个 GTK free 项目，那么一些关键的 GTK 应用怎么安装呢？于是，就引入了“Bundle 系统”来满足这样的需求。目前 Bundle 管理器已有 30 多款可用的 GTK 应用程序，如 Emacs、Firefox、Skype、GIMP 等。
+</p>
+<p>
+  更多关于 Bundle 系统的信息，可查看 <a href="http://www.chakra-project.org/wiki/index.php?title=Bundles">wiki</a>。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">基本配置</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<ol>
+<li>配置升级源
+</li>
+</ol>
+
+
+<p>
+  我们需要将 Chakra 默认升级源改为中国服务器，在终端打开文件 <code>/etc/pacman.d/mirrorlist</code> ，选择位于中国的一个服务器。同时，将文件末尾的美国服务器全部注释掉。
+</p>
+
+
+
+<pre class="example">...
+
+# China
+Server = http://oss.ustc.edu.cn/kdemod/$repo/x86_64
+#Server = http://debian.cn99.com/kdemod/$repo/x86_64
+#Server = http://mirrors.163.com/kdemod/$repo/x86_64
+
+...
+
+# United States
+#Server = http://chakra.hostingxtreme.com/$repo/x86_64
+#Server = http://mirror.rit.edu/kdemod/$repo/x86_64
+#Server = ftp://mirror.dacentec.com/chakra/$repo/x86_64
+#Server = http://mirror.dacentec.com/chakra/$repo/x86_64
+</pre>
+
+
+<ol>
+<li>安装中文输入法 fcitx
+</li>
+</ol>
+
+
+
+
+
+<pre class="example">sudo pacman -S fcitx kcm-fcitx fcitx-rime fcitx-sunpinyin fcitx-googlepinyin
+</pre>
+
+
+<ol>
+<li>安装 Plasma 部件：显示桌面部件
+</li>
+</ol>
+
+
+
+
+
+<pre class="example">
+sudo pacman -S kdeplasma-addons-applets-showdesktop
+</pre>
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn-.1" href="#fnr-.1">1</a></sup> <a href="http://www.chakra-project.org/wiki/index.php?title=Tribe">http://www.chakra-project.org/wiki/index.php?title=Tribe</a>
+</p>
+
+
+<p class="footnote"><sup><a class="footnum" name="fn-.2" href="#fnr-.2">2</a></sup> <a href="http://zh.wikipedia.org/wiki/查克拉">http://zh.wikipedia.org/wiki/%E6%9F%A5%E5%85%8B%E6%8B%89</a>
+</p></div>
+</div>
+
 </div>
 </div>
 </div>
 
 <div id="postamble">
-<p class="postamble">Update time: 2013-04-21T22:05+0800.</p> 
+<p class="postamble">Update time: 2013-04-25T23:46+0800.</p> 
 </div>
 </body>
 </html>
