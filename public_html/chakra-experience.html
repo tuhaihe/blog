@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Chakra：GTK Free！"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-04-25T23:46+0800"/>
+<meta name="generated" content="2013-05-05T19:02+0800"/>
 <meta name="author" content="tuhaihe"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -203,6 +203,65 @@ for the JavaScript code in this tag.
 <p>
   更多关于 Bundle 系统的信息，可查看 <a href="http://www.chakra-project.org/wiki/index.php?title=Bundles">wiki</a>。
 </p>
+<p>
+  <b>更新(2013.5.4)</b>
+</p>
+<p>
+  Bundle 系统已经被 <code>[extra]</code> 软件仓库代替。原先的 Bundle 软件包管理器已经无法使用，Cinstall 里面也看不到可用的 GTK 软件列表。
+</p>
+<p>
+  解决方法：
+</p>
+<ul>
+<li>添加 <code>extra</code> 软件仓库
+
+
+
+<pre class="example">$ sudo nano /etc/pacman.conf #打开配置文件
+
+#在该配置文件中添加下面几行内容：
+[extra]
+Include = /etc/pacman.d/mirrorlist
+
+[testing]
+Include = /etc/pacman.d/mirrorlist
+</pre>
+
+
+</li>
+<li>安装 <code>filesystem-extra</code>
+
+
+
+
+<pre class="example">sudo pacman -Sy filesystem-extra
+</pre>
+
+
+</li>
+<li>重启系统，即可从 <code>extra</code> 软件仓库中安装 GTK 应用程序了。
+</li>
+</ul>
+
+
+<p>    
+  **关于 <a href="http://chakra-project.org/bbs/viewtopic.php?id=10278">extra</a>**
+</p>
+<p>
+  EXTRA 目录是一个全新的文件目录结构，包括一系列的配置文件，允许用户安装并使用 Gtk 程序和软件包。大体文件结构如下：
+</p>
+
+
+
+<pre class="example">/extra
+/extra/etc
+/extra/bin
+/extra/lib
+/extra/usr
+/extra/opt 
+</pre>
+
+
 </div>
 
 </div>
@@ -284,7 +343,7 @@ sudo pacman -S kdeplasma-addons-applets-showdesktop
 </div>
 
 <div id="postamble">
-<p class="postamble">Update time: 2013-04-25T23:46+0800.</p> 
+<p class="postamble">Update time: 2013-05-05T19:02+0800.</p> 
 </div>
 </body>
 </html>
