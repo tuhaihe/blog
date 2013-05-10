@@ -1,5 +1,4 @@
 #+SETUPFILE: css/level-0.orgcss
-#+HTML: <script src="js/bootstrap.js"></script>
 #+TITLE: Git 基本操作
 
 * 简介

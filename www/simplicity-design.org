@@ -1,5 +1,4 @@
 #+SETUPFILE: css/level-0.orgcss
-#+HTML: <script src="js/bootstrap.js"></script>
 #+TITLE: 《简约至上》读书摘抄
 
 * 关于“简单”

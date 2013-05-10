@@ -1,5 +1,4 @@
 #+SETUPFILE: css/level-0.orgcss
-#+HTML: <script src="js/bootstrap.js"></script>
 #+TITLE: GNU Emacs 参考资料
 
 * 简介

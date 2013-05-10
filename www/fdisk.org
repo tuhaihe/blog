@@ -1,5 +1,4 @@
 #+SETUPFILE: css/level-0.orgcss
-#+HTML: <script src="js/bootstrap.js"></script>
 #+TITLE: fdisk: 磁盘分区命令
 
 fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，如 Debian 等系统图形界面安装过程中有很好的图形工具，一般不会用它，但在尝试 Gentoo 过程中，就遇到该工具了。

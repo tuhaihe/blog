@@ -1,5 +1,4 @@
 #+SETUPFILE: css/level-0.orgcss
-#+HTML: <script src="js/bootstrap.js"></script>
 #+TITLE: GNU Nano 编辑器简介
 
 
