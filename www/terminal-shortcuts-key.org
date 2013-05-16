@@ -23,6 +23,11 @@ $ bindkey -e #设为 Emacs 模式
 
 * 编辑命令
 
+#+BEGIN_EXAMPLE
+  C 代表 Ctrl，C-a 表示按住 Ctrl 键不放再按下 a
+  M 为修饰键，一般为 Alt，M-f 表示按住 Alt 键不放再按下 f
+#+END_EXAMPLE  
+  
 #+CAPTION: 移动  
 | C-a | 跳至命令行行首             |
 | C-e | 跳至命令行行尾             |
