@@ -19,7 +19,7 @@
    Git 配置文件为 =~/.gitconfig= 或系统全局设置 =/etc/gitconfig= 。
 
 #+BEGIN_SRC shell
-$ git config –-global user.name “tuhaihe″ #该昵称显示在提交时使用
+$ git config --global user.name tuhaihe #该昵称显示在提交时使用
 $ git config –-global user.email zhsan@gmail.com #该邮箱提交时使用
 #+END_SRC
 
