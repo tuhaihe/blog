@@ -3,8 +3,5 @@
 #+LINK_HOME: index.html
 #+LINK_UP: index.html
 #+STYLE: <link href="css/org.css" rel="stylesheet" type="text/css">
-#+STYLE: <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-#+STYLE: <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-#+INFOJS_OPT: path:js/org-info.js view:showall toc:nil ltoc:nil tdepth:2 mouse:#dddddd
 
 
