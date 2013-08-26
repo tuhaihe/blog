@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>窗口管理器 Fluxbox</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="窗口管理器 Fluxbox"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-08-27T00:33+0800"/>
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link href="css/org.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">窗口管理器 Fluxbox</h1>
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">简介</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>  <a href="http://fluxbox.org">Fluxbox</a> 是一款X11窗口管理器。
+</p>
+<ul>
+<li>轻型，占用资源少
+</li>
+<li>快速
+</li>
+<li>高度定制
+</li>
+</ul>
+
+
+
+
+
+<pre class="example">sudo yum install fluxbox #Fedora用户安装
+sudo apt-get install fluxbox #Debian用户安装
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">配置</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">主题</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<p>   全局主题配置目录： <code>/usr/share/fluxbox/styles</code>
+</p>
+<p>
+   当前用户主题配置： <code>~/.fluxbox/styles</code>
+</p>
+<p>
+   我们只需将主题文件存放在上面之一个目录即可，然后，右键桌面即可在“Fluxbox菜单-用户风格/系统风格”中选择主题。大家可以下载我修改的Fluxbox的Mac OS主题(<a href="https://github.com/tuhaihe/fluxbox-macos-theme">github</a>)。
+</p></div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">壁纸</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<p>   我们可以使用Fluxbox 0.9.15中新增的styleOverlay来设置壁纸。styleOverlay可以覆盖其他配置文件中的元素，配置文件： <code>~/.fluxbox/overlay</code> 。
+</p>
+<p>
+   设置壁纸的话，可以将下面内容添加到文件 <code>~/.fluxbox/overlay</code> 中：
+</p>
+
+
+
+<pre class="example">background: aspect
+background.pixmap: ~/wallpaper.jpg #后面填写壁纸文件位置
+</pre>
+
+
+<p>
+   其中， <code>aspect</code> （保持宽高比）处还可以替换为 <code>centered</code> （居中）、 <code>tiled</code> （平铺）或 <code>random</code> （“随机”，如果设为random，则必须指定一个图片文件夹，而非单个文件）。
+</p></div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3">菜单</h3>
+<div class="outline-text-3" id="text-2-3">
+
+<p>   右键点击桌面，可以看到可用的菜单选项。如果你的右键还没有生成菜单，可在终端运行命令 <code>fluxbox-generate_menu</code> 来自动生成菜单。不过，我们手动修改菜单文件 <code>~/.fluxbox/menu</code> 会更加灵活方便。在这里，你可以突出显示常用应用，隐去你不常用的应用。下面是单个菜单配置语法：
+</p>
+
+
+
+<pre class="example">[exec] (显示名称) {命令}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4">按键绑定</h3>
+<div class="outline-text-3" id="text-2-4">
+
+<p>   配置文件： <code>~/.fluxbox/keys</code> 。
+</p>
+<p>
+   比如，默认按下Alt+F2，则弹出Fbrun命令运行对话框。
+</p>
+<p>
+   关于更多的设置，可参考<a href="http://fluxbox-wiki.org/index.php?title=Editing_the_init_file">如何编辑初始文件</a>。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">相关链接</h2>
+<div class="outline-text-2" id="text-3">
+
+<ul>
+<li><a href="http://tenr.de/styles">Fluxbox Styles</a>：更多Fluxbox主题
+</li>
+<li><a href="http://www.gentoo.org/doc/en/fluxbox-config.xml">Gentoo Wiki</a>
+</li>
+<li><a href="https://wiki.archlinux.org/index.php/Fluxbox">Archwiki Fluxbox</a>
+</li>
+<li><a href="http://fluxbox-wiki.org">Fluxbox-wiki</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="postamble">Update time: 2013-08-27T00:33+0800.</p> 
+</div>
+</body>
+</html>
