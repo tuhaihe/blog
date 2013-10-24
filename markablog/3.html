@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<title>tuhaihe</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="title" content="tuhaihe">
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content="关于Linux、开源、社区，笨兔兔博客. Personal blog about Linux, open source, community. "/>
+<meta name="keywords" content="linux, open source, debian, fedora, blog, community, 开源, 社区, debian, mageia, 博客, bentutu, 笨兔兔, tuhaihe, TUHAIHE"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href='css/02bootstrap.min.css' type='text/css' rel='stylesheet'>
+<link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
+<link href='css/01main.css' type='text/css' rel='stylesheet'>
+<link href='css/04normalize.css' type='text/css' rel='stylesheet'>
+<link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
+</head>
+<body>
+<div class='container'>
+<!--[if lt IE 7]>
+<p class="chromeframe">
+
+You are using an <strong>outdated</strong> browser. Please 
+<a href="http://browsehappy.com/">upgrade your browser</a> or 
+<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> 
+to improve your experience.
+
+</p>
+<![endif]-->
+
+<div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="text-center"><h1>tuhaihe <small>∑</small></h1></div>
+            
+            <div class="text-center" style="padding-bottom:10px;">
+        
+                <a href = 'index.html'>Index</a> | <a href = 'About.html'>About</a>
+        
+            </div>
+
+        </div>
+        
+        <div class = "span2"></div>
+</div>
+<div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Ubuntu 13.04安装Linux Deepin特色软件 <small><a href = '20130608ubuntu-add-linuxdeepin-repo.html'>June 08th, 2013</a></small></h2>
+
+<p>最新版本的 Linux Deepin 12.12 RC 已经将基础仓库升级到了 Ubuntu Raring，Linux Deepin 开发的特色软件，简单易用，其他发行版本的开发者应该尽量移植。因为 Linux Deepin 使用了 Ubuntu 的基础仓库，所以，Ubuntu 用户安装 Linux Deepin 软件相对容易一些。</p>
+
+<p>下面以 Ubuntu 13.04 安装 Linux Deepin 特色软件为例。</p>
+
+<ol>
+<li><p>添加 Linux Deepin 升级源</p>
+
+<pre class="prettyprint">
+<code>
+sudo gedit /etc/apt/sources.list #编辑升级列表
+</code>
+</pre>
+
+<p>将下面两行内容添加到该文件末尾：</p>
+
+<pre class="prettyprint">
+<code>
+deb http://packages.linuxdeepin.com/deepin raring main non-free universe
+deb-src http://packages.linuxdeepin.com/deepin raring main non-free universe
+</code>
+</pre></li>
+<li><p>添加 Linux Deepin 密钥文件</p>
+
+<ul>
+<li>导入密钥</li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+wget http://packages.linuxdeepin.com/deepin/project/deepin-keyring.gpg
+gpg --import deepin-keyring.gpg
+</code>
+</pre>
+
+<ul>
+<li>列出密钥</li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+gpg --list-keys
+</code>
+</pre>
+
+<p>你会看到输出的结果如下：</p>
+
+<pre class="prettyprint">
+<code>
+/home/test/.gnupg/pubring.gpg
+\-----------------------------
+pub   2048R/209088E7 2010-10-06
+uid                  Leng Ganghua (Hiweed) <hiweed@gmail.com>
+sub   2048R/4B46F33F 2010-10-06
+</code>
+</pre>
+
+<ul>
+<li>将密钥导出到 apt-key</li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+sudo gpg --export --armor 209088E7 | sudo apt-key add -
+</code>
+</pre></li>
+<li><p>更新软件源列表</p>
+
+<pre class="prettyprint">
+<code>
+sudo apt-get update
+</code>
+</pre></li>
+<li><p>更多</p>
+
+<ul>
+<li>深度音乐：<code>sudo apt-get install python-deepin-gsettings deepin-music-player</code></li>
+<li>深度软件中心：<code>sudo apt-get install deepin-software-center</code></li>
+<li>深度桌面环境：<code>sudo apt-get install dde-meta-core#注销，选择从Deepin登录即可</code></li>
+<li>小企鹅输入法与搜狗拼音：<code>sudo apt-get install ibus- fcitx fcitx-sogoupinyin #同时卸载 Ibus</code></li>
+</ul></li>
+</ol>
+
+<p>你可以通过这种方式来更多的安装 Linux Deepin 仓库里面的软件。当然，进入深度桌面环境后，你可能会发现系统设置里面的部分模块表现不如原生的表现良好。同理，Linux Mint 等类似系列发行版本也可以使用该方法。</p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="http://www.linuxdeepin.com/forum/6/7996">Linux Deepin论坛：设置源时出现公钥问题的解决</a></li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Chakra：GTK Free！ <small><a href = '20130602about-chakra-linux.html'>June 02th, 2013</a></small></h2>
+
+<h2>关于 Chakra</h2>
+
+<p><a href="http://www.chakra-project.org">Chakra project</a> 最显著的特点：它是一个“GTK free”（去 GTK 化）、纯 KDE 发行版本，主要运行基于 Qt 的应用程序。</p>
+
+<p>Chakra 安装程序使用图形化安装工具 <a href="http://www.chakra-project.org/wiki/index.php?title=Tribe">Tribe</a>，帮助大家轻松进行初始化配置，并将 Chakra 安装到硬盘上。相比 Arch Linux 文本安装界面来说，对用户更加友好。关于 Chakra 的历史，官方给了相关介绍：</p>
+
+<ul>
+<li>Arch Linux 与 KDEmod：2006 年 6 月，KDEmod 项目诞生。随着该项目的流行，2008 年 12 月开发者开发了一款安装器（Tribe）并以 Arch+KDEmod+Tribe 模式发布了第一个 ISO。此时，还只是 Arch Linux 套上了一层 KDEmod 外壳。</li>
+<li>随着发布了几个版本，项目主要创始人 Jan Mette（于2010年去世）希望将项目从 Arch 脱离出来建立一个独立的 LiveCD。2010 年 5 月份开发者发布了第一个构建版本。同时，项目组结束了 KDEmod 的开发，转为“Chakra 项目”。由此，Chakra 项目诞生。</li>
+</ul>
+
+<p>Chakra 一词源自梵文，在印度瑜伽体系中指分布于人体各部位的<a href="http://zh.wikipedia.org/wiki/%E6%9F%A5%E5%85%8B%E6%8B%89">能量中枢</a>。</p>
+
+<h2>Bundle 系统：让非 Qt 程序顺利运行</h2>
+
+<p>既然 Chakra 是一个 GTK free 项目，那么一些关键的 GTK 应用怎么安装呢？于是，就引入了“Bundle 系统”来满足这样的需求。目前 Bundle 管理器已有 30 多款可用的 GTK 应用程序，如 Emacs、Firefox、Skype、GIMP 等。</p>
+
+<p>更多关于 Bundle 系统的信息，可查看 <a href="http://www.chakra-project.org/wiki/index.php?title=Bundles">wiki</a>。</p>
+
+<p><em>更新(2013.5.4)</em>：Bundle 系统已经被 <code class='prettyprint'>[extra]</code> 软件仓库代替。原先的 Bundle 软件包管理器已经无法使用，Cinstall 里面也看不到可用的 GTK 软件列表。</p>
+
+<p>解决方法：</p>
+
+<ul>
+<li><p>添加 extra 软件仓库</p>
+
+<pre class="prettyprint">
+<code>
+$ sudo nano /etc/pacman.conf #打开配置文件
+</code>
+</pre>
+
+<p>在该配置文件中添加下面几行内容：</p>
+
+<pre>
+[extra]
+Include = /etc/pacman.d/mirrorlist
+
+
+[testing]
+Include = /etc/pacman.d/mirrorlist
+</pre></li>
+<li><p>安装 filesystem-extra</p>
+
+<pre class="prettyprint">
+<code>
+$ sudo pacman -Sy filesystem-extra
+</code>
+</pre>    </li>
+<li><p>重启系统。即可从 extra 软件仓库中安装 GTK 应用程序了。</p></li>
+</ul>
+
+<h3>关于 <a href="http://chakra-project.org/bbs/viewtopic.php?id=10278">extra</a></h3>
+
+<p>EXTRA 目录是一个全新的文件目录结构，包括一系列的配置文件，允许用户安装并使用 Gtk 程序和软件包。大体文件结构如下：</p>
+
+<pre class="prettyprint">
+<code>
+/extra
+/extra/etc
+/extra/bin
+/extra/lib
+/extra/usr
+/extra/opt 
+</code>
+</pre>
+
+<h2>基本配置</h2>
+
+<ol>
+<li><p>配置升级源</p>
+
+<p>我们需要将 Chakra 默认升级源改为中国服务器，在终端打开文件 <code class='prettyprint'>/etc/pacman.d/mirrorlist</code> ，选择位于中国的一个服务器。同时，将文件末尾的美国服务器全部注释掉。</p></li>
+</ol>
+
+<pre>
+    # China
+    Server = http://oss.ustc.edu.cn/kdemod/$repo/x86_64
+    #Server = http://debian.cn99.com/kdemod/$repo/x86_64
+    #Server = http://mirrors.163.com/kdemod/$repo/x86_64
+    ...
+    # United States
+    #Server = http://chakra.hostingxtreme.com/$repo/x86_64
+    #Server = http://mirror.rit.edu/kdemod/$repo/x86_64
+    #Server = ftp://mirror.dacentec.com/chakra/$repo/x86_64
+    #Server = http://mirror.dacentec.com/chakra/$repo/x86_64
+</pre>
+
+<ol>
+<li><p>安装中文输入法 fcitx</p>
+
+<pre class="prettyprint"> 
+<code>
+$ sudo pacman -S fcitx kcm-fcitx fcitx-rime fcitx-sunpinyin fcitx-googlepinyin
+</code>
+</pre></li>
+<li><p>安装 Plasma 部件：显示桌面部件</p>
+
+<pre class="prettyprint">  
+<code>
+$ sudo pacman -S kdeplasma-addons-applets-showdesktop
+</code>
+</pre></li>
+</ol>
+
+<p>在这种纯种 KDE 的环境中，如果你长期习惯于 GNOME 软件使用，你会感到不舒服。不过，真的有人是很讨厌GNOME的……</p>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>《简约至上》阅读笔记 <small><a href = '20130526simplicity-design.html'>May 26th, 2013</a></small></h2>
+
+<h2>关于“简单”</h2>
+
+<p>“简单”二字，并非我们看上去那么简单，“简单”不简单，真正搞懂“简单”也不是一件简单的事情。</p>
+
+<ol>
+<li><p>“为什么安装打印机不能像插电源插座那么简单？”</p>
+
+<p>这是作者开篇提出的第一个问题。这源于作者两次不同购买打印机的经历。购买第一台打印机（估计是很久以前的事情）费了很多周折：手动组装部件、检查硬件设置、安装打印机驱动，来来回回折腾了好几个小时。到作者第二次购买打印机的时候，这时仅仅是插上墨盒、打开开关、连接上 Wifi，就正常工作了，再也没有其他什么令人讨厌的问题出现。</p>
+
+<p>当然，作者购买的两台打印机时间间隔肯定很长，期间技术发生了大变化、设计上也注意到了让用户使用方面的需求。简单地完成一件事情，是多么令人羡慕的事情呢！</p>
+
+<p>很多人提到这样一种观点：需要用户设置的系统不是好系统。想来也是很有道理的。为什么一个操作系统从安装到使用这个过程不能变得更加简单呢？很多人可能喜欢系统安装后，借助流行的软件进行“个性化”的过程，但这种折腾带来的刺激不会持续下去。<em>一个开箱即用的系统，正当其时</em>！</p></li>
+<li><p>“简单并不意味着最少化”</p>
+
+<p>“简单”是相对大多数人而言的。作者给出一个很有力的例子：<em>独轮车</em>。它与普通的自行车相比而言，的确在外观上是“少”，可除了经过受训的专业人员外，没有人能够驾驭的了。由此可以看出，简单不限于“量”。一些看上去简单的东西，可能并不简单，反而或让我们变得复杂起来。</p>
+
+<p>就像之前本站的模样，外观是够简洁了：纯文本。可我还需的还有更多，如每篇文章都有单个页面、更加漂亮的外观，这些是无法拒绝的要求。坦白讲，那根本不是“简洁”，而是“简陋”。无论如何，“<em>绝对不要漏掉关键环节</em>”。</p></li>
+<li><p>“设计简单的体验意味着要追求极端的目标”</p></li>
+<li>“不要匆忙着手设计。理解核心问题需要时间。”</li>
+</ol>
+
+<h2>简约设计四策略</h2>
+
+<p>作者举了一个面试设计师时经常提的一个问题：简化遥控器。作者根据常遇到的简化方案，总结了四大类方案：删除、组织、隐藏、转移。</p>
+
+<ul>
+<li>删除：去掉不必要的按钮，直到减到不能再减。</li>
+<li>组织：按照有意义的标准讲按钮划分成组。</li>
+<li>隐藏：把那些不是最重要的按钮安排在活动仓盖之中，避免分散用户注意力</li>
+<li><p>转移：只在遥控器上保留具备最基本功能的按钮，将其他控制转移到电视屏幕上的菜单里，从而将复杂性转移到电视。</p></li>
+<li><p>“简化设计最明显的方式就是删除不必要的功能。”</p></li>
+<li>“砍掉功能有时候是一个血腥无情的过程。”</li>
+<li>“人们都舍不得扔东西，即使它已经破烂不堪。”</li>
+<li>“给那些轻易就能够满足主流用户需求的功能排定优先次序。”</li>
+<li>“选择有限，用户反而更喜欢。”</li>
+<li>“减少不必要的说明。”
+这句话，对文章写作具有借鉴意义。“多余的文字通常都是浪费”。让文章突出重点：“删除引荐性文字、删除不必要的说明、删除繁琐的解释”，总之，就是尽量减少废话。</li>
+<li>“人们并不总是走你为他们铺好的路。”</li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Oh my Zsh! <small><a href = '20130517oh-my-zsh.html'>May 17th, 2013</a></small></h2>
+
+<p>Zsh 是一款功能强大的交互式 shell，与 Bash 相比，Zsh 下面几点表现令人印象深刻：</p>
+
+<ul>
+<li>自动补全</li>
+<li>拼写纠错</li>
+<li>定制性强</li>
+<li>美观的命令提示符（这点吸引力最大）</li>
+</ul>
+
+<p>相信你安装之后，对上面几点会有更加真切的感受！</p>
+
+<h2>安装</h2>
+
+<pre class="prettyprint">
+<code>
+sudo apt-get install zsh #Debian系列
+sudo urpmi zsh #Mageia
+sudo yum install zsh #Fedora
+</code>
+</pre>
+
+<p>查看是否已经安装：运行 <em>cat /etc/shells</em> 或 <em>chsh -l</em>。如果已经安装，则会看到输出结果中有 <em>/bin/zsh</em> 一行内容。</p>
+
+<h2>将 Zsh 设为默认 Shell</h2>
+
+<p>Zsh 配置文件为 ~/.zshrc（个人配置）和 /etc/zshrc（系统全局）。</p>
+
+<p>将 Zsh 设为终端模拟器默认使用的 Shell：</p>
+
+<pre class="prettyprint">
+<code>
+$ chsh -s zsh #不必以 root 身份运行，但需要输入管理员密码
+</code>
+</pre>
+
+<h2>让 Zsh 更漂亮：oh-my-zsh</h2>
+
+<p>当首次以 zsh 打开终端模拟器时，会弹出提示：<a href="http://upload.wikimedia.org/wikipedia/commons/9/99/Zsh-new-user.png">点击查看</a>，忽略即可。下面使用 Oh-my-zsh 利器帮助我们进行定制。</p>
+
+<ol>
+<li><p>安装 oh-my-zsh(二选一)：</p>
+
+<ul>
+<li>通过 curl </li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</code>
+</pre>
+
+<ul>
+<li>通过 wget</li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+</code>
+</pre></li>
+<li><p>命令提示符主题设置</p>
+
+<pre class="prettyprint">
+<code>
+$ cd ~/.oh-my-zsh/tools
+$ ./theme_chooser.sh #运行提示符主题选择工具
+</code>
+</pre>    
+
+<p>运行上述命令后，会有很多漂亮的命令提示符等待你的选择。更多提示符主题截图可查看 oh-my-zsh wiki，我们可以手动修改 ~/.zshrc 文件中 <code class='prettyprint'>ZSH_THEME</code> 一行内容来设置自己喜欢的主题。</p></li>
+<li><p>插件</p></li>
+</ol>
+
+<p>oh-my-zsh 提供了 100 多个插件，可根据需求设置，这里不具体介绍。</p>
+
+<p>当使用 Zsh 的时候，才体会到什么是“终极 Shell”。工具，就是等待我们不断去发现！</p>
+
+<h2>相关链接</h2>
+
+<ul>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh/wiki">oh-my-zsh wiki</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Zsh_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">Archlinux Wiki</a></li>
+<li><a href="http://zh.opensuse.org/SDB:Zsh">OpenSUSE Wiki</a></li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Tar、zipg2、zip用法备注 <small><a href = '20130513tar-zip2-gzip-detail.html'>May 13th, 2013</a></small></h2>
+
+<h2>Tar(tape archiver)</h2>
+
+<p>它起初被用来在磁带上创建归档文件。Tar 最基本的功能就是把众多文件集合在一个文件中（生成归档文件），避免文件零散摆放，并不包括压缩功能（降低文件硬盘占有空间）。Tar 只有和其他压缩命令结合在一起，才能发挥压缩文件功能。</p>
+
+<p>常用参数： </p>
+
+<ul>
+<li>-c, --create      建立新归档文件</li>
+<li>-t, --list        列出归档中的文件目录</li>
+<li>-x, -extract      解包/解压缩</li>
+<li>-j, --bzip2, --bunzip2    用bzip2压缩/解压缩归档          </li>
+<li>-z, --gzip, --ungzip  用gzip压缩/解压缩归档</li>
+<li>-v, --verbose     详细显示处理的文件</li>
+<li>-f, --file        指定归档文件</li>
+<li>-C, --directory DIR   解压到指定目录</li>
+<li>-Z, --(un)compress</li>
+</ul>
+
+<p>了解了上面常用的参数选项后，基本了解了如何归档/压缩/解压缩日常面临的对应文件了。</p>
+
+<h2>压缩命令 gzip</h2>
+
+<p>使用 gzip 压缩后的文件名后缀常为 .gz；解压缩支持由 gzip、zip、compress 产生的压缩文件格式，所以支持 .gz, -gz, .z, -z, _z, .Z 结尾并具有正确标志头的文件。同时，它也可以识别 .tgz(-> .tar.gz) 和 .taz(-> .tar.Z)</p>
+
+<p>我们总结下，结尾包括下列的压缩文件皆可用 gzip 解压：</p>
+
+<ul>
+<li>.gz</li>
+<li>-gz</li>
+<li>.z</li>
+<li>-z</li>
+<li>_z</li>
+<li>.Z</li>
+<li>tar.gz(解为 tar 包, tar 解压缩时结合参数 -z)</li>
+</ul>
+
+<h2>压缩命令 bzip2</h2>
+
+<p>bzip2 支持解压缩的文件格式：</p>
+
+<ul>
+<li>.bz2</li>
+<li>.bz</li>
+<li>.tbz2（tar 解压缩时结合参数 -j）</li>
+<li>.tbz(同上)</li>
+</ul>
+
+<h2>使用举例</h2>
+
+<ol>
+<li><p>解开 *.tar</p>
+
+<pre class="prettyprint">
+<code>
+abc.tar : tar xvf abc.tar
+</code>
+</pre></li>
+<li><p>解压缩 *.tar.gz / *.tgz</p>
+
+<pre class="prettyprint">
+<code>
+abc.tar.gz : tar zxvf abc.tar.gz
+abc.tgz : tar zxvf abc.tar.gz
+</code>
+</pre></li>
+<li>解压缩 *.tar.bz2 / *.tbz
+<pre class="prettyprint">
+<code>
+abc.tar.bz2 : tar jxvf abc.tar.bz2
+abc.tbz : tar jxvf abc.tbz
+</code>
+</pre></li>
+<li>解压缩 *.tar.Z
+<pre class="prettyprint">
+<code>
+abc.tar.Z : tar -Zxvf abc.tar.Z 
+</code>
+</pre></li>
+</ol>
+
+<h2>zip &amp; rar</h2>
+
+<p>tar 和 gzip\bzip2 往往联合使用，后者常针对单个文件进行解压/压缩，但无“打包”功能。zip：pacakge and comrepss(archive) files.</p>
+
+<p><em>提示</em></p>
+
+<p>使用 tar 解压缩文件时，有时候我们会针对不同的压缩文件格式记忆不同的参数，其实，最新版本的 tar 就不必这样麻烦了。我们只需要执行<code class='prettyprint'>tar xvf *.tar.Z/*.tar.gz/*.tgz/*.tbz/*.tar.bz2</code>这样就可以了！真的相当方便！</p>
+
+<h2>参考链接</h2>
+
+<ul>
+<li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress_3.php">鸟哥的私房菜</a></li>
+<li><a href="http://tldp.org/LDP/GNU-Linux-Tools-Summary/html/backing-up-files.html">GNU/Linux Command Line Tools Summary: Archiving Files</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Tar">Archlinux Wiki:Tar</a></li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class = 'row-fluid'><div class = 'span8 offset2'><a href='2.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a><a href='4.html' class='btn pull-right'>Next <i class='icon-black icon-arrow-right'></i></a></div></div><footer id="footer">
+		<p class='text-center'>tuhaihe, 2013. Powered by Markablog.</p>
+</footer>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXXXXX', '');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</div>
+</body>
+</html>

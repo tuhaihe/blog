@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<title>tuhaihe - use-emacs-orgmode-generate-website</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="title" content="tuhaihe">
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content="关于Linux、开源、社区，笨兔兔博客. Personal blog about Linux, open source, community. "/>
+<meta name="keywords" content="linux, open source, debian, fedora, blog, community, 开源, 社区, debian, mageia, 博客, bentutu, 笨兔兔, tuhaihe, TUHAIHE"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href='css/02bootstrap.min.css' type='text/css' rel='stylesheet'>
+<link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
+<link href='css/01main.css' type='text/css' rel='stylesheet'>
+<link href='css/04normalize.css' type='text/css' rel='stylesheet'>
+<link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
+</head>
+<body>
+<div class='container'>
+<!--[if lt IE 7]>
+<p class="chromeframe">
+
+You are using an <strong>outdated</strong> browser. Please 
+<a href="http://browsehappy.com/">upgrade your browser</a> or 
+<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> 
+to improve your experience.
+
+</p>
+<![endif]-->
+
+<div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="text-center"><h1>tuhaihe <small>∑</small></h1></div>
+            
+            <div class="text-center" style="padding-bottom:10px;">
+        
+                <a href = 'index.html'>Index</a> | <a href = 'About.html'>About</a>
+        
+            </div>
+
+        </div>
+        
+        <div class = "span2"></div>
+</div>
+<div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>使用 Emacs Org 制作静态网站 <small><a href = '20130617use-emacs-orgmode-generate-website.html'>June 17th, 2013</a></small></h2>
+
+<h2>关于 Org</h2>
+
+<p>Org 模式可用来做笔记，用作 GTD 工具（记录 TODO 列表）等，它也是一个优秀的编辑、排版系统。这里主要介绍如何使用 Emacs Org Mode 来制作静态网页、组织静态站点。其实，这也就是本站点的生成方法。</p>
+
+<p>Emacs 已经默认安装 Org，不过，我们也可以通过下面方式来安装最新的 Org(推荐)。</p>
+
+<ul>
+<li><p><a href="http://orgmode.org/">官方站点</a>下载 Org 最新版本的归档文件，在配置文件 ~/.emacs 进行配置：</p>
+
+<pre class="prettyprint">
+<code>
+;;~/path/to/orgdir 换成 org 文件夹实际路径
+(add-to-list 'load-path "~/path/to/orgdir/lisp")
+</code>
+</pre></li>
+</ul>
+
+<p>更多安装方法，可参考<a href="http://orgmode.org/org.html#Installation">官方文档</a>。</p>
+
+<h2>配置 Org</h2>
+
+<p>Emacs 22.2 版本以来，支持默认使用 Org 模式打开 .org 文件，如果使用早期的 Emacs 版本，我们需要将下面一句加入到 ~/.emacs 文件：</p>
+
+<pre class="prettycode">
+<code>
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+</code>
+</pre>
+
+<p>同时，也将下面内容添加到 ~/.emacs 中：</p>
+
+<p><pre class="prettycode">
+<code>
+;;使用 Org 的其他功能, 全局按键设置
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)</p>
+
+<p>;;设置 Org 文件自动换行
+(add-hook 'org-mode-hook
+      (lambda () (setq truncate-lines nil)))
+</code>
+</pre></p>
+
+<h2>站点设置</h2>
+
+<ol>
+<li><p>文件目录结构：做好规划</p>
+
+<p>我们把 .org 格式源文件与导出的 html 文件分开，方便管理。</p>
+
+<p>以本博客为例： .org 文件存放在 ~/blog/www/ 文件夹中，导出的 html 文件存放在 ~/blog/public_html/ 文件夹中。同时， ~/blog/www/ 下还有 css 文件夹（本博客<a href="https://github.com/tuhaihe/blog/tree/master/www/css">css文件</a>，用于存在样式表和脚本。如果你的站点需要图片，则可以新建一个 img 文件夹。</p>
+
+<p>你可以根据站点的情况来设计自己站点的文件目录结构。</p></li>
+<li><p>配置 org-publish-project</p>
+
+<p>将下面内容添加到 ~/.emacs 中：</p>
+
+<pre class="prettyprint">
+<code>
+(require 'org-publish)
+(setq org-publish-project-alist
+;notes组件
+'((
+     "org-notes"
+     :base-directory "~/blog/www/" ;设置存放.org文件位置 
+     :base-extension "org" ;仅处理 .org 格式文件
+     :publishing-directory "~/blog/public_html/" ;导出html文件位置
+     :recursive t
+ :publishing-function org-publish-org-to-html
+     :headline-levels 4 ;Just the default for this project.
+ :auto-preamble t
+     :auto-sitemap t                  ;自动生成 sitemap.org
+     :sitemap-filename "sitemap.org"  ;默认名称
+     :sitemap-title "Sitemap"         
+     :export-creator-info nil    ;禁止在 postamble 显示"Created by Org"
+     :export-author-info nil     ;禁止在 postamble 显示 "Author: Your Name"
+     :auto-postamble nil         
+     :table-of-contents nil      ;禁止生成文章目录，如果要生成，将 nil 改为 t
+     :section-numbers nil        ;禁止在段落标题前使用数字，如果使用，将 nil 改为 t
+     :html-postamble "<p class=\"postamble\">Update time: %d.</p> " ;自定义 postamble 显示字样
+     :style-include-default nil  ;禁用默认 css 样式,使用自定义css
+    )
+;;static 组件
+    ("org-static"
+     :base-directory "~/blog/www/"
+     :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+     :publishing-directory "~/blog/public_html/"
+     :recursive t
+     :publishing-function org-publish-attachment
+     )
+;;publish 组件
+    ("org" :components ("org-notes" "org-static"))
+))
+</code>
+</pre></li>
+<li><p>设置：css 样式&amp;其他信息</p>
+
+<p>我们在第一步已经设置好 CSS 样式文件，它们会控制导出的 HTML 文件外观。除了控制外观之外，还有一些信息也需要我们进行设置。为了方便每次 .org 文件设置，我们在 ~/blog/www/css/ 文件夹下新建一个文件，名为 level-0.orgcss（可自定义），将下面内容复制到该文件中(根据你的个人情况进行修改)：</p>
+
+<pre>
+ #+AUTHOR: tuhaihe
+ #+EMAIL: 1132321739qq AT gmail DOT com
+ #+LINK_HOME: index.html
+ #+LINK_UP: index.html
+ #+STYLE: <link href="css/org.css" rel="stylesheet" type="text/css">
+ #+STYLE: <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+ #+STYLE: <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+</pre></li>
+<li><p>发布</p>
+
+<ul>
+<li>首先，在 ~/blog/www/ 文件夹下新建 index.org 文件，并在其开始添加下面头信息：</li>
+</ul>
+
+<pre>
+   #+SETUPFILE: css/level-0.orgcss
+   #+TITLE: 随便写个标题
+
+
+   Hello, world!
+</pre>
+
+<ul>
+<li>导出 HTML 文件</li>
+</ul>
+
+<p>输入 <code class='prettyprint'>M-x org-publish-project</code>，接着输入<code class='prettyprint'>org</code> 回车，OK。Org 已经将 index.org 导出为 index.html 文件了。用浏览器打开该文件，查看下效果吧。趁着热情，新建一个 hello.org ，同样先添加上面的文件头信息，然后洋洋洒洒抒发激动心情吧。此时，可以输入 <code class='prettyprint'>M-x org-publish-current-file</code>，将其导出为 hello.html 文件。</p></li>
+</ol>
+
+<h2>相关链接</h2>
+
+<ul>
+<li><a href="http://orgmode.org">Org Mode 官网</a></li>
+<li><a href="http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html">Publishing Org-mode files to HTML</a>：比本篇文章更详细的教程 </li>
+<li><a href="http://orgmode.org/guide/">The compact Org-mode Guide</a>：Org-mode 语法文档</li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><footer id="footer">
+		<p class='text-center'>tuhaihe, 2013. Powered by Markablog.</p>
+</footer>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXXXXX', '');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</div>
+</body>
+</html>

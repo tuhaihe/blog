@@ -1,0 +1,52 @@
+#+SETUPFILE: css/level-0.orgcss
+#+TITLE: 窗口管理器 Fluxbox
+
+* 简介
+  [[http://fluxbox.org][Fluxbox]] 是一款X11窗口管理器。
+
+  + 轻型，占用资源少
+  + 快速
+  + 高度定制
+
+  #+BEGIN_SRC shell
+sudo yum install fluxbox #Fedora用户安装
+sudo apt-get install fluxbox #Debian用户安装
+  #+END_SRC
+  
+* 配置
+** 主题
+   全局主题配置目录： =/usr/share/fluxbox/styles=
+
+   当前用户主题配置： =~/.fluxbox/styles=
+
+   我们只需将主题文件存放在上面之一个目录即可，然后，右键桌面即可在“Fluxbox菜单-用户风格/系统风格”中选择主题。大家可以下载我修改的Fluxbox的Mac OS主题([[https://github.com/tuhaihe/fluxbox-macos-theme][github]])。
+** 壁纸
+   我们可以使用Fluxbox 0.9.15中新增的styleOverlay来设置壁纸。styleOverlay可以覆盖其他配置文件中的元素，配置文件： =~/.fluxbox/overlay= 。
+
+   设置壁纸的话，可以将下面内容添加到文件 =~/.fluxbox/overlay= 中：
+
+   #+BEGIN_SRC shell
+   background: aspect
+   background.pixmap: ~/wallpaper.jpg #后面填写壁纸文件位置
+   #+END_SRC shell
+
+   其中， =aspect= （保持宽高比）处还可以替换为 =centered= （居中）、 =tiled= （平铺）或 =random= （“随机”，如果设为random，则必须指定一个图片文件夹，而非单个文件）。
+** 菜单
+   右键点击桌面，可以看到可用的菜单选项。如果你的右键还没有生成菜单，可在终端运行命令 =fluxbox-generate_menu= 来自动生成菜单。不过，我们手动修改菜单文件 =~/.fluxbox/menu= 会更加灵活方便。在这里，你可以突出显示常用应用，隐去你不常用的应用。下面是单个菜单配置语法：
+
+   #+BEGIN_SRC shell
+   [exec] (显示名称) {命令}
+   #+END_SRC
+   
+** 按键绑定
+   配置文件： =~/.fluxbox/keys= 。
+
+   比如，默认按下Alt+F2，则弹出Fbrun命令运行对话框。
+
+   关于更多的设置，可参考[[http://fluxbox-wiki.org/index.php?title=Editing_the_init_file][如何编辑初始文件]]。
+   
+* 相关链接
++ [[http://tenr.de/styles][Fluxbox Styles]]：更多Fluxbox主题
++ [[http://www.gentoo.org/doc/en/fluxbox-config.xml][Gentoo Wiki]]
++ [[https://wiki.archlinux.org/index.php/Fluxbox][Archwiki Fluxbox]]
++ [[http://fluxbox-wiki.org][Fluxbox-wiki]]

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<title>tuhaihe - fdisk-command-detail</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="title" content="tuhaihe">
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content="关于Linux、开源、社区，笨兔兔博客. Personal blog about Linux, open source, community. "/>
+<meta name="keywords" content="linux, open source, debian, fedora, blog, community, 开源, 社区, debian, mageia, 博客, bentutu, 笨兔兔, tuhaihe, TUHAIHE"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href='css/02bootstrap.min.css' type='text/css' rel='stylesheet'>
+<link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
+<link href='css/01main.css' type='text/css' rel='stylesheet'>
+<link href='css/04normalize.css' type='text/css' rel='stylesheet'>
+<link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
+</head>
+<body>
+<div class='container'>
+<!--[if lt IE 7]>
+<p class="chromeframe">
+
+You are using an <strong>outdated</strong> browser. Please 
+<a href="http://browsehappy.com/">upgrade your browser</a> or 
+<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> 
+to improve your experience.
+
+</p>
+<![endif]-->
+
+<div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="text-center"><h1>tuhaihe <small>∑</small></h1></div>
+            
+            <div class="text-center" style="padding-bottom:10px;">
+        
+                <a href = 'index.html'>Index</a> | <a href = 'About.html'>About</a>
+        
+            </div>
+
+        </div>
+        
+        <div class = "span2"></div>
+</div>
+<div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>fdisk: 磁盘分区命令 <small><a href = '20130511fdisk-command-detail.html'>May 11th, 2013</a></small></h2>
+
+<h2>简介</h2>
+
+<p>fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，如 Debian 等系统图形界面安装过程中有很好的图形工具，一般不会用它，但在尝试 Gentoo 过程中，就遇到该工具了。目前，ArchLinux 安装过程也会用到 fdisk 命令进行磁盘分区。当然，在 FreeBSD 中也会用到。涉及到磁盘的重新规划，如果我们对该命令不熟悉，又会经常遇到它，那么磁盘中的数据随时都有可能被误删除，非常危险。所以，我们下面对这一命令进行下学习。</p>
+
+<h2>常用参数简介</h2>
+
+<pre class="prettyprint">
+<code>
+$ fdisk -l [设备名称]
+</code>
+</pre>
+
+<p>这里的设备，通常是下列之一：</p>
+
+<ul>
+<li>/dev/hd[a-h]</li>
+<li>/dev/sd[a-p]</li>
+</ul>
+
+<p>/dev/hd[a-h] 指 IDE 硬盘，/dev/sd[a-p] 指 SCSI 硬盘（常见）。</p>
+
+<ul>
+<li>例一
+<code>
+$ sudo fdisk -l #该命令会列举出系统内所有可以找出的设备分区
+</code></li>
+<li>例二
+<code>
+$ sudo fdisk -l /dev/sda #该命令输出指定设备 /dev/sda 上所有的分区
+</code></li>
+</ul>
+
+<h2>实战：使用 fdisk 创建&amp;删除分区</h2>
+
+<p>以 8G U盘作为实验对象，U 盘设备名称是 /dev/sdc。输入下面命令即可进入 fdisk 的交互界面。</p>
+
+<pre class="prettyprint">
+<code>
+ $ sudo fdisk /dev/sdc
+</code>
+</pre>
+
+<p>我们会看到相应的输出结果：</p>
+
+<pre>
+  [tuhaihe@localhost ~]$ sudo fdisk /dev/sdc
+  Welcome to fdisk (util-linux 2.22.2).
+
+  Changes will remain in memory only, until you decide to write them.
+  Be careful before using the write command.
+
+  Command (m for help): ①
+</pre>
+
+<p>我们在 ① 处输入 m，可以查看到许多操作参数，和我们最密切的有下面五个：</p>
+
+<ul>
+<li>d   delete a partition，删除分区</li>
+<li>n   add a new partition，新建分区</li>
+<li>p   print the partition table，输出当前分区表</li>
+<li>q   quit without saving changes，退出，但不保存对现有分区作出的任何更改</li>
+<li>w   write table to disk and exit，将对分区表的更改写入磁盘（慎用！）</li>
+</ul>
+
+<p>具体创建分区、删除分区步骤，可参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#fdisk">鸟哥私房菜站点</a>， 多练习几次就可以熟悉了。</p>
+
+<p><em>建议</em></p>
+
+<p>我们初学该命令，如果一开始就在真机上操作，那么很有可能造成误操作！我们可以建立一个虚拟机，在虚拟机进行测试，这样不会对数据造成毁灭性破坏。这里指出，大家要慎用 w 参数。如果对自己的操作捏不准干脆“q”一走了之。在创建完分区，<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#format">格式化分区</a>时，注意交换分区(swap)分区格式化(<code class='prettyprint'>mkswap /dev/[设备名]</code>)后，还需要执行 <code class='prettyprint'>swapon</code> 启用交换分区。</p>
+
+<p>该命令应用实例也可参考 <a href="http://www.gentoo.org/doc/zh_cn/handbook/handbook-x86.xml?part=1&amp;chap=4">Gentoo 手册：准备磁盘</a>。</p>
+
+<h2>cfdisk：更加直观的分区命令</h2>
+
+<p>相比 fdisk，cfdisk 的界面更加直观和容易操作。可在二者之间选择一个更加适合自己的工具。不过，对于超过 2T 大小的硬盘进行分区，fdisk 就无能为力了。fdisk 目前仅支持 MBR，不支持 GPT 分区表，所以对于超过 2T 的硬盘分区可以选择 parted 命令。</p>
+
+<p>parted 命令支持读取包括 MS-DOS 和 GPT 在内的多种分区表格式，关于该命令，可查看更多：<code class='prettyprint'>man parted</code>。</p>
+
+<p><img src="http://i.imgur.com/ceSKYRJ.png" alt="cfdisk使用截图" title="" /></p>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><footer id="footer">
+		<p class='text-center'>tuhaihe, 2013. Powered by Markablog.</p>
+</footer>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXXXXX', '');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</div>
+</body>
+</html>

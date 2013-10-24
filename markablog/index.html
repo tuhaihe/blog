@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<title>tuhaihe</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="title" content="tuhaihe">
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content="关于Linux、开源、社区，笨兔兔博客. Personal blog about Linux, open source, community. "/>
+<meta name="keywords" content="linux, open source, debian, fedora, blog, community, 开源, 社区, debian, mageia, 博客, bentutu, 笨兔兔, tuhaihe, TUHAIHE"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href='css/02bootstrap.min.css' type='text/css' rel='stylesheet'>
+<link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
+<link href='css/01main.css' type='text/css' rel='stylesheet'>
+<link href='css/04normalize.css' type='text/css' rel='stylesheet'>
+<link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
+</head>
+<body>
+<div class='container'>
+<!--[if lt IE 7]>
+<p class="chromeframe">
+
+You are using an <strong>outdated</strong> browser. Please 
+<a href="http://browsehappy.com/">upgrade your browser</a> or 
+<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> 
+to improve your experience.
+
+</p>
+<![endif]-->
+
+<div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="text-center"><h1>tuhaihe <small>∑</small></h1></div>
+            
+            <div class="text-center" style="padding-bottom:10px;">
+        
+                <a href = 'index.html'>Index</a> | <a href = 'About.html'>About</a>
+        
+            </div>
+
+        </div>
+        
+        <div class = "span2"></div>
+</div>
+<div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Xterm：不曾接触的风景 <small><a href = '20131016xterm-discover.html'>October 16th, 2013</a></small></h2>
+
+<p>Xterm 是 X 系统标配的终端模拟器，原先对这个丑陋的家伙并没有入眼。用它打开后，显示中文一堆乱码，“不堪入目”。前几天便有好奇心，如何解决它的中文显示乱码问题呢？于是，开始了对 Xterm 的探索之旅。</p>
+
+<h2>背景：Xresources 文件</h2>
+
+<p>Xterm 的配置文件就是 Xresources，一般为 ~/.Xresources。Xresources 支持：</p>
+
+<ul>
+<li>定义终端颜色</li>
+<li>配置终端首选项</li>
+<li>字体设置</li>
+<li>Xcursor 游标主题设置</li>
+<li>xscreensaver 屏保主题</li>
+<li>其他 X 应用首选项设置，如 xclok……</li>
+</ul>
+
+<p>在使用 ~/.Xresouces 之前，常用 ~/.Xdefaults 这个文件来做设置，不过现在后者已经基本被废弃，大家更常用 ~/.Xresources。所以，Xterm 的配置也要写在 ~/.Xresources 里面。显示管理器登录系统时，会自动读取该文件，以加载配置。当然，我们还需要熟悉下面的两个命令：</p>
+
+<p><pre class="prettyprint">
+<code>
+xrdb ~/.Xresources #重新加载 .Xresouces 文件，不保留原先配置
+xrdb -merge ~/.Xresources #重新加载 .Xresouces 文件，保留原先配置
+</code>
+</pre></p>
+
+<h2>Xterm配置</h2>
+
+<ol>
+<li><p>UTF-8</p>
+
+<p>让Xterm将输入的数据解释为UTF-8编码：<pre>xterm*locale:true</pre></p></li>
+<li><p>修复“Alt”按键</p>
+
+<p>如果你使用“Alt”作为 Meta 键，需要设置：<pre>xterm*metaSendsEscape:true</pre></p></li>
+<li><p>滚屏</p>
+
+<p>可通过鼠标滚轮，或者触摸板边缘上下滚动，或者使用 Shift+PageUp/PageDown 来滚动。</p></li>
+<li><p>字体</p>
+
+<p>我们一开始面对的就是中文乱码，这个特别恼人，所以要在这里解决：</p>
+
+<pre class="prettyprint">
+<code>
+xterm*faceName: DejaVu Sans Mono:style=Book:antialias=false
+xterm*faceNameDoublesize: WenQuanYi Micro Hei
+xterm*faceSize: 8
+</code>
+</pre>     
+
+<p>上面的“DejaVu Sans Mono”和“WenQuanYi Micro Hei”都可以换成自己喜欢的字体，当然，还可以设置它们是否为粗体（Bold），或者斜体（Italic）等。</p></li>
+<li><p>色彩</p>
+
+<p>Xterm 默认是“白底黑字”，我们可以如下简单的设置：</p>
+
+<pre class="prettyprint">
+<code>
+xterm*foreground: rgb:b2/b2/b2
+xterm*background: rgb:08/08/08
+</code>
+</pre>     </li>
+<li><p>复制与粘贴</p>
+
+<p>默认情况，Xterm 的选中与粘贴：鼠标高亮选中的文本，就是要复制的文本，在 Xterm 按下“Shift+Insert”或者按鼠标中键就可以直接粘贴。在 X 下，高亮选中的文本被复制到了一个叫做“PRIMARY”的缓冲区，如果继续高亮选中其他文本，则用新高亮选中的文本来代替之前保存的文本。当然，与上面的“PRIMARY”相比，还有一种“CLIPBOARD”：使用“Ctrl+c”或“Ctrl+x”来进行文本复制和剪切，然后“Ctrl+v”进行复制，这就用到了“CLIPBOARD”。</p>
+
+<p>可以使用下面设置共用这两种方式：</p>
+
+<pre class="prettyprint">
+<code>
+XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+</code>
+</pre>
+
+<p>如果我们要启用“Ctrl+v”来复制，可以结合上面设置：</p>
+
+<pre class="prettyprint">
+<code>
+xterm*VT100.Translations: #override \
+   <Btn1Up>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
+   Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
+</code>
+</pre></li>
+</ol>
+
+<h2>相关链接</h2>
+
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Xterm">Archlinux wiki: Xterm</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/X_resources">Archlinux wiki：Xresources</a></li>
+<li><a href="https://gist.github.com/tuhaihe/6992626">我的Xterm配置</a></li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Fluxbox:窗口管理器 <small><a href = '20130827fluxbox.html'>August 27th, 2013</a></small></h2>
+
+<p><a href="http://fluxbox.org">Fluxbox</a> 是一款 X11 窗口管理器。它具备下面特点：</p>
+
+<ul>
+<li>轻型，占用资源少</li>
+<li>快速</li>
+<li><p>高度定制</p>
+
+<p><pre class="prettyprint">
+<code>
+sudo yum install fluxbox #Fedora 用户安装
+sudo apt-get install fluxbox #Debian 用户安装
+</code></p></li>
+</ul>
+
+<h2>配置详情</h2>
+
+<h3>主题</h3>
+
+<p>全局主题配置目录：<code class='prettyprint'>/usr/share/fluxbox/styles</code>；当前用户主题配置：<code class='prettyprint'>~/.fluxbox/styles</code>。</p>
+
+<p>我们只需将主题文件存放在上面之一个目录即可，然后，右键桌面即可在“Fluxbox菜单-用户风格/系统风格”中选择主题。大家可以下载我修改的 Fluxbox 的 Mac OS 主题(<a href="https://github.com/tuhaihe/fluxbox-macos-theme">github</a>)。</p>
+
+<h3>壁纸</h3>
+
+<p>我们可以使用 Fluxbox 0.9.15 中新增的 <code class='prettyprint'>styleOverlay</code> 来设置壁纸。styleOverlay 可以覆盖其他配置文件中的元素，配置文件：<code class='prettyprint'>~/.fluxbox/overlay</code>。</p>
+
+<p>设置壁纸的话，可以将下面内容添加到文件 <code class='prettyprint'>~/.fluxbox/overlay</code> 中：</p>
+
+<p><pre class="prettyprint">
+<code>
+background: aspect
+background.pixmap: ~/wallpaper.jpg #后面填写壁纸文件位置
+</code>
+</pre></p>
+
+<p>其中， aspect（保持宽高比）处还可以替换为 centered（居中）、tiled（平铺）或 random（“随机”，如果设为 random，则必须指定一个图片文件夹，而非单个文件）。</p>
+
+<h3>菜单</h3>
+
+<p>右键点击桌面，可以看到可用的菜单选项。如果你的右键还没有生成菜单，可在终端运行命令 <code class='prettyprint'>fluxbox-generate_menu</code> 来自动生成菜单。不过，我们手动修改菜单文件 ~/.fluxbox/menu 会更加灵活方便。在这里，你可以突出显示常用应用，隐去你不常用的应用。下面是单个菜单配置语法：</p>
+
+<p><pre class="prettyprint">
+<code>
+[exec] (显示名称) {命令}
+</code>
+</pre></p>
+
+<h3>按键绑定</h3>
+
+<p>配置文件：~/.fluxbox/keys。比如，默认按下 Alt+F2，则弹出 Fbrun 命令运行对话框。</p>
+
+<p>关于更多的设置，可参考<a href="http://fluxbox-wiki.org/index.php?title=Editing_the_init_file">如何编辑初始文件</a>。当然，你看了可能并不会知道更多关于 Fluxbox 的内容，这就需要你自己动手去查阅资料。这里仅是为个人和大家提供一个线索。</p>
+
+<h2>资料链接</h2>
+
+<ul>
+<li><a href="http://tenr.de/styles">Fluxbox Styles</a>：更多Fluxbox主题</li>
+<li><a href="http://www.gentoo.org/doc/en/fluxbox-config.xml">Gentoo Wiki</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Fluxbox">Archwiki Fluxbox</a></li>
+<li><a href="http://fluxbox-wiki.org">Fluxbox-wiki</a></li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>定制 Shell 提示符 <small><a href = '20130714bash-shell-prompt.html'>July 14th, 2013</a></small></h2>
+
+<h2>Shell 类型标识</h2>
+
+<p>在打开的终端等待输入命令时，往往显示部分信息，如显示当前日期、符号“>”、“$” 等等，这就是命令提示符。</p>
+
+<p>我们可能会注意到，在使用不同的用户标识、不同的 Shell 类型时，会出现诸如 $、#、% 等提示符。默认情况下，它们都有标志意义的。通过下表，可以进行了解一下。</p>
+
+<p><em>标准 Shell 提示</em></p>
+
+<table>
+<tr><td>Shell提示</td><td>Shell类型</td></tr>
+<tr><td>$</td><td>Bash</td></tr>
+<tr><td>%</td><td>C-shell家族</td></tr>
+<tr><td>%或></td><td>Tcsh</td></tr>
+<tr><td>#</td><td>根用户，root身份</td></tr>
+</table>
+
+<p>当我们看到这些 Shell 提示符时，应该灵敏地感觉到自己处在什么 Shell 类型之中。尤其是出现“#”时，也应该意识到：我正在以 root 用户标识登陆，我的每一步操作都应该谨慎。</p>
+
+<h2>定制 Bash Shell 命令提示符</h2>
+
+<h3>引子</h3>
+
+<p>在多数 Linux 下，一般提供 Bash 作为默认 Shell。但不同的系统中，你会看到不同的命令提示符，如 Fedora 下：</p>
+
+<p><pre class="prettyprint">
+<code>
+   [fedora@fedora ~]$ 
+</code>
+</pre></p>
+
+<p>或者，它们默认提供的颜色也不一致。这就是我们要讨论的：如何去定制更加个性化的命令提示符。</p>
+
+<h3>环境变量 PS1</h3>
+
+<p>Shell 命令提示符实际上由一个环境变量 PS1 来设置的，上面的例子 PS1 值为：</p>
+
+<p><pre class="prettyprint"> <br />
+<code>
+$ echo $PS1 #显示PS1变量值
+   [\u@\h \W]\$
+</code>
+</pre></p>
+
+<p>在 Shell 提示中，我们可以使用「环境变量」和「特殊码」来定制提示符。</p>
+
+<p><em>Shell 提示符号中有用的环境变量</em></p>
+
+<table>
+<tr><td>变量</td><td>含义</td></tr>
+<tr><td>HOME</td><td>主文件夹目录</td></tr>
+<tr><td>HOSTNAME</td><td>计算机名称</td></tr>
+<tr><td>HOSTTYPE</td><td>主机类型（CPU架构）</td></tr>
+<tr><td>LOGNAME</td><td>当前用户标识</td></tr>
+<tr><td>PWD</td><td>当前工作目录</td></t>
+<tr><td>RANDOM</td><td>0～32767之间的随机数</td></tr>
+<tr><td>SECONDS</td><td>当前 Shell 运行时间（秒）</td></tr>
+<tr><td>SHELL</td><td>登陆 Shell 的路径名</td></tr>
+<tr><td>USER</td><td>当前用户标识</td></tr>
+</table>
+
+<p>当我们要在命令提示符中使用上述环境变量时，可以直接将其插入在命令提示符中，如：</p>
+
+<p><pre class="prettyprint">
+<code>
+   export PS1="$USER >"
+</code>
+</pre></p>
+
+<p>当然，上面的环境变量有限，提供的信息也没有足够的吸引力。Bash 还允许通过插入一些反斜杠转义的特殊字符来定制命令提示符（<code class='prettyprint'>man bash</code>）：</p>
+
+<table>
+<tr><td>\d</td><td>日期，格式是 "星期 月份 日" (例如，"Tue May 26")</td></tr>
+<tr><td>\h</td><td>主机名，第一个 `.' 之前的部分</td></tr>
+<tr><td>\H</td><td>主机名</td></tr>
+<tr><td>\n</td><td>换行</td></tr>
+<tr><td>\r</td><td>回车</td></tr>
+<tr><td>\t</td><td>显示当前时间，采用24小时制 HH:MM:SS 格式</td></tr>
+<tr><td>\T</td><td>显示当前时间，采用12小时制的 HH:MM:SS 格式</td></tr>
+<tr><td>\@</td><td>显示当前时间，采用12小时制「上午/下午」格式</td></tr>
+<tr><td>\A</td><td>显示当前时间，采用24小时制「上午/下午」格式</td></tr>
+<tr><td>\u</td><td>当前用户的用户名</td></tr>
+<tr><td>\w</td><td>当前工作目录</td></tr>
+<tr><td>\W</td><td>当前工作目录的基本部分</td></tr>
+<tr><td>\!</td><td>此命令的历史编号</td></tr>
+<tr><td>\#</td><td>此命令的命令编号</td></tr>
+<tr><td>\$</td><td>如果有效 UID 是 0，就是 #, 其他情况下是 $</td></tr>
+<tr><td>\\</td><td>一个反斜杠</td></tr>
+<tr><td>\[</td><td>一个不可打印字符序列的开始，可以用于在提示符中嵌入终端控制序列</td></tr>
+<tr><td>\]</td><td>一个不可打印字符序列的结束</td></tr>
+</table>
+
+<p>结合上面提供的可用特殊字符，定制个性化的命令提示符并不困难了。可以结合前面的文章《Oh my zsh！》进行设置。</p>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>《Unix &amp; Linux 大学教程》读后感 <small><a href = '20130703harley-hahn-linux-guide-1.html'>July 03th, 2013</a></small></h2>
+
+<h2>然</h2>
+
+<p>“Unix 用起来容易，但学习起来难”。Unix/Linux 操作系统的使用作为实践性非常强的一门“技术”，有章可循。每一个命令的命令格式、参数、选项都可以通过阅读手册获得，所以用起来很容易。</p>
+
+<p>但它学习起来，并不是每天扫地的阿姨一眼就能轻松掌握的工具。如作者所言，“设计 Unix 的目的不是为了学习而是为了使用。”为了达到使用 Unix 这一工具的目的，我们需要了解其“然”，也就是基本操作：了解如何登陆 Unix、如何使用 Unix 编辑文件、操作目录……</p>
+
+<p>下面，我就作者提到的学习“然”的过程中应有的（有趣的）认识总结一下：</p>
+
+<ul>
+<li>使用计算机是您思维活动的延伸，使用的操作系统会改变您的思维方式，Unix 是目前所发明的最好的计算机系统。</li>
+<li>Unix 和 Linux 是由非常聪明、非常有创造力的人经过深思熟虑设计出来的。当您使用 Unix 或 Linux 系统时，我们正在与这些聪明的人进行心灵感应。</li>
+<li>Unix 和 Linux 不仅仅是一种操作系统，也是一种文化。</li>
+<li>Unix 是一组为聪明人准备的工具。大多数情况下，Unix 人士要比平常人聪明很多。</li>
+<li>Unix 用起来容易，但学习起来难。</li>
+<li>设计 Unix 的目的不是为了学习而是为了使用。换句话说，学习 Unix 既费力又费时，但是，一旦掌握了需要掌握的技能，无论用 Unix 从事什么工作都会既快又简便。Unix 用起来容易，学习起来难。</li>
+<li>永远不要愚蠢地认为计算机界面应该“直观”到对初学者立即有用，复杂的任务需要复杂的工具，而复杂的工具需要时间来掌握。（个人引申：复杂的工具掌握需要时间，然而得到的是珍宝！）</li>
+<li>Unix 就是 Unix。</li>
+</ul>
+
+<h2>所以然</h2>
+
+<p>龚自珍曾言：欲知大道，必先为史。意思很明了：要想掌握“大道”，治国平天下的大道，必须从了解和研究历史入手。</p>
+
+<p>这句话用到 Unix 和 Linux 的学习上同样适用。一个命令、一项功能的发生、发展和增强（或消亡）也同样会有其时的人或事来影响决定的。如果我们了解了 Unix 系统本为玩游戏而开发，我们就会感觉到 Unix 的诞生是多么地有趣；如果我们了解到 1991 年的 Unix 正在徘徊之中，Linux 的诞生也决不是一个纯属巧合的事情了。</p>
+
+<h3>例一：Linux 这个名字如何得来</h3>
+
+<p>算上本书给出的有趣故事，我已经看到好几个关于 Linux 名称由来的历史版本了。本书给出的“历史”显得更加十分有趣。</p>
+
+<p>Linus 大神发布第一个公开版本的内核时，计划使用现在看起来很挫的一个名字：Freax，是“free Unix”的缩写。</p>
+
+<p>当时，一名程序员 Ari Lemmke 说服 Linus 将内核文件上传到一个由自己运营的服务器上，可以让爱好者通过分享系统方便地访问，但 Lemmke 对 Freax 这个名字不太满意，当他在创建存放这些文件的目录时，他便历史性地将该目录命名为 Linux。从此，Linux 这个名字传播开来。</p>
+
+<p>当年的 Ari Lemmke 做了一个重要的历史决定，他虽然是出于个人喜好，但现在看来是多么可爱的一个决定！</p>
+
+<h3>例二：正则表达式</h3>
+
+<p>术语“正则表达式”来源于计算机科学，具体指美国数学家和计算机科学家 Stephen Kleene 的工作。</p>
+
+<p>在 20 世纪 40 年代初，神经学科学家 Walter Pitts 和 arren McCulloch 按照他们对神经元(神经细胞)工作方式的理解，开发了一个数学模型。作为模型的一部分，他们使用了非常简单的虚构机器，称为“自动机”。50 年代中期，Kleene 开发了一种描述自动机的数学方法，即使用所谓的“正则集”：用少量简单属性描述的集合。后来，Kleene 创建了一种简单的记号，用来描述此类集合，称为“正则表达式”。</p>
+
+<p>在 1966 年，Unix 系统发明人 Ken Thompson 加入贝尔实验室，工作任务之一就是编写一个新版本的 QED 文本编辑器。在他编写的新版本中，Ken Thompson 引入了使用 Kleene 正则表达式的模式匹配功能。后来，他编写 Unix 系统编辑器 ed 时，也采用了较为简洁的正则表达式功能。</p>
+
+<p>后来，正则表达式应用越来越广泛。由此可见，正则表达式是如何引入到了计算机科学，如何应用到了 Unix 这一过程。当我们了解到正则表达式的发展背景后，学习起来会更加轻松一些。“为什么要这样做”的原因也就找到了。</p>
+
+<h3>例三：Unix 文件权限组织方式的由来：用户、组、其他人</h3>
+
+<p>现在 Unix 文件权限的组织方式还是来自当年的贝尔实验室。在开发 Unix 时，实验室的里面人们都是以小组为单位进行工作的，他们互相共享程序与文档资料。当然，他们也有自己唯一拥有权限的文档，这时我们现在看到的权限组织方式就诞生了。Unix 开发人员为此将文件的拥有者分为三类：属主、所在组与系统里面的每一个人。</p>
+
+<p>虽然现在大家都拥有了自己的个人电脑，组的概念逐渐被弱化，但在某些共享系统上还是会遇到。看过这些背景后，就知道为什么文件权限需要这样做，而且现在这样做仍然有效。</p>
+
+<p>当然，从本书了解到也不仅仅是历史，更多有趣的比如“女人是一种多线程处理能力极强的人类，男人很难做到一边看孩子、一边打电话、一边做饭，而女人则可以轻而易举，比如妈妈”。</p>
+
+<h2>关于本书</h2>
+
+<p>“本书将改变您的生活”！</p>
+
+<blockquote>
+  <p>书名：《Unix &amp; Linux 大学教程》（Guide to Unix and Linux）
+  作者：Harley Hahn
+  译者：张杰良</p>
+</blockquote>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class = 'row-fluid'><div class = 'span8 offset2'><a href='2.html' class='btn pull-right'>Next <i class='icon-black icon-arrow-right'></i></a></div></div><footer id="footer">
+		<p class='text-center'>tuhaihe, 2013. Powered by Markablog.</p>
+</footer>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXXXXX', '');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</div>
+</body>
+</html>

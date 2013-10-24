@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>定制 Shell 提示符</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="定制 Shell 提示符"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-07-14 13:54:02 CST"/>
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link href="css/org.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">定制 Shell 提示符</h1>
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Shell 类型标识</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+  在打开的终端等待输入命令时，往往显示部分信息，如显示当前日期、符号“&gt;”、“$” 等等，这就是命令提示符。
+</p>
+<p>
+  我们可能会注意到，在使用不同的用户标识、不同的 Shell 类型时，会出现诸如 $、#、% 等提示符。默认情况下，它们都有标志意义的。通过下表，可以进行了解一下。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>标准 Shell 提示</caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">Shell提示</td><td class="left">Shell 类型</td></tr>
+<tr><td class="left">$</td><td class="left">Bash</td></tr>
+<tr><td class="left">%</td><td class="left">C-shell 家族</td></tr>
+<tr><td class="left">%或&gt;</td><td class="left">Tcsh</td></tr>
+<tr><td class="left">#</td><td class="left">根用户，root</td></tr>
+</tbody>
+</table>
+
+
+<p>
+  当我们看到这些 Shell 提示符时，应该灵敏地感觉到自己处在什么 Shell 类型之中。尤其是出现“#”时，也应该意识到：我正在以 root 用户标识登陆，我的每一步操作都应该谨慎。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">定制 Bash Shell 命令提示符</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">引子</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+   在多数 Linux 下，一般提供 Bash 作为默认 Shell。但不同的系统中，你会看到不同的命令提示符，如 Fedora 下：
+</p>
+<blockquote>
+
+<p>[fedora@fedora ~]$ 
+</p>
+</blockquote>
+
+
+<p>
+   或者，它们默认提供的颜色也不一致。这就是我们要讨论的：如何去定制更加个性化的命令提示符。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">环境变量 PS1</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<p>
+   Shell 命令提示符实际上由一个环境变量 PS1 来设置的，上面的例子 PS1 值为：
+</p>
+
+
+
+<pre class="example">$ echo $PS1#显示PS1变量值
+[\u@\h \W]\$
+</pre>
+
+
+<p>
+   在 Shell 提示中，我们可以使用「环境变量」和「特殊码」来定制提示符。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>Shell 提示中有用的环境变量</caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">变量</td><td class="left">含义</td></tr>
+<tr><td class="left">HOME</td><td class="left">主文件夹目录</td></tr>
+<tr><td class="left">HOSTNAME</td><td class="left">计算机名称</td></tr>
+<tr><td class="left">HOSTTYPE</td><td class="left">主机类型（CPU架构）</td></tr>
+<tr><td class="left">LOGNAME</td><td class="left">当前用户标识</td></tr>
+<tr><td class="left">PWD</td><td class="left">当前工作目录</td></tr>
+<tr><td class="left">RANDOM</td><td class="left">0～32767之间的随机数</td></tr>
+<tr><td class="left">SECONDS</td><td class="left">当前 shell 运行时间（秒）</td></tr>
+<tr><td class="left">SHELL</td><td class="left">登陆 Shell 的路径名</td></tr>
+<tr><td class="left">USER</td><td class="left">当前用户标识</td></tr>
+</tbody>
+</table>
+
+
+<p>
+   当我们要在命令提示符中使用上述环境变量时，可以直接将其插入在命令提示符中，如：
+</p>
+
+
+
+<pre class="example">export PS1="$USER &gt;"
+</pre>
+
+
+<p>
+   当然，上面的环境变量有限，提供的信息也没有足够的吸引力。Bash 还允许通过插入一些反斜杠转义的特殊字符来定制命令提示符（ <code>man bash</code> ）：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">\d</td><td class="left">日期，格式是 "星期 月份 日" (例如，"Tue May 26")</td></tr>
+<tr><td class="left">\h</td><td class="left">主机名，第一个 `.' 之前的部分</td></tr>
+<tr><td class="left">\H</td><td class="left">主机名</td></tr>
+<tr><td class="left">\n</td><td class="left">换行</td></tr>
+<tr><td class="left">\r</td><td class="left">回车</td></tr>
+<tr><td class="left">\t</td><td class="left">显示当前时间，采用 24小时制 HH:MM:SS 格式</td></tr>
+<tr><td class="left">\T</td><td class="left">显示当前时间，采用 12小时制的 HH:MM:SS 格式</td></tr>
+<tr><td class="left">\@</td><td class="left">显示当前时间，采用 12小时制「上午/下午」格式</td></tr>
+<tr><td class="left">\A</td><td class="left">显示当前时间，采用 24小时制「上午/下午」格式</td></tr>
+<tr><td class="left">\u</td><td class="left">当前用户的用户名</td></tr>
+<tr><td class="left">\w</td><td class="left">当前工作目录</td></tr>
+<tr><td class="left">\W</td><td class="left">当前工作目录的基本部分</td></tr>
+<tr><td class="left">\!</td><td class="left">此命令的历史编号</td></tr>
+<tr><td class="left">\#</td><td class="left">此命令的命令编号</td></tr>
+<tr><td class="left">\$</td><td class="left">如果有效 UID 是 0，就是 #, 其他情况下是 $</td></tr>
+<tr><td class="left">\\</td><td class="left">一个反斜杠</td></tr>
+<tr><td class="left">\[</td><td class="left">一个不可打印字符序列的开始，可以用于在提示符中嵌入终端控制序列</td></tr>
+<tr><td class="left">\]</td><td class="left">一个不可打印字符序列的结束</td></tr>
+</tbody>
+</table>
+
+
+<p>
+   结合上面提供的可用特殊字符，定制个性化的命令提示符并不困难了。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">相关链接</h2>
+<div class="outline-text-2" id="text-3">
+
+<ul>
+<li><a href="http://tuhaihe.com/oh-my-zsh.html">Oh my Zsh !</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="postamble">Update time: 2013-07-14 13:54:02 CST.</p> 
+</div>
+</body>
+</html>

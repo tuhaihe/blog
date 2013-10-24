@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>终端快捷键：提升效率</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="终端快捷键：提升效率"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-05-16T23:40+0800"/>
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link href="css/org.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">终端快捷键：提升效率</h1>
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">引言</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>  
+  大多数系统  Shell 默认使用 Bash。如果你是一个 Emacs 用户，不经意在 Bash 按下 C-a，发现竟然可以跳至命令行的开头，C-e 跳至命令行行尾，C-p/C-n 可以调出上一条/下一条历史命令……这些不是巧合。
+</p>
+<p>
+  是的，Bash 支持命令行编辑，允许使用许多不同的按键控制命令行上输入的内容。尤其需要指出的是，Bash 支持 Vi/Emacs 命令查看、修改我们在命令行上输入的内容。不用惊奇，Shell 不允许它们同时生效，这样你就可以避免同时处于 Vi 和 Emacs 模式之中了。
+</p>
+<p>
+  Shell 默认使用 Emacs 命令，称之为 Emacs 模式。当然，我们可以通过下面操作随意切换模式。
+</p>
+
+
+
+<pre class="example"># Bash Shell
+$ set -o vi #切换至 Vi 模式
+$ set -o emacs #由 Vi 模式切回到 Emacs 模式
+
+# Zsh
+$ bindkey -v #设为 Vi 模式
+$ bindkey -e #设为 Emacs 模式
+</pre>
+
+
+<p>
+  下面，我们重点介绍 Bash Emacs 模式下的快捷键。这里列举的操作快捷键与 Emacs 中的不尽相同。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">编辑命令</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+
+
+<pre class="example">C 代表 Ctrl，C-a 表示按住 Ctrl 键不放再按下 a
+M 为修饰键，一般为 Alt，M-f 表示按住 Alt 键不放再按下 f
+</pre>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>移动</caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">C-a</td><td class="left">跳至命令行行首</td></tr>
+<tr><td class="left">C-e</td><td class="left">跳至命令行行尾</td></tr>
+<tr><td class="left">C-f</td><td class="left">向前移动一个字符(chracter)</td></tr>
+<tr><td class="left">C-b</td><td class="left">向后移动一个字符</td></tr>
+<tr><td class="left">M-f</td><td class="left">向前移动一个单词(word)</td></tr>
+<tr><td class="left">M-b</td><td class="left">向后移动一个单词</td></tr>
+</tbody>
+</table>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>删除</caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">C-k</td><td class="left">删除当前光标位置到命令行行尾的全部字符（包括光标所在字符）</td></tr>
+<tr><td class="left">C-u</td><td class="left">删除当前光标位置到命令行行首的全部字符（不包括光标所在字符）</td></tr>
+<tr><td class="left">C-w</td><td class="left">删除光标前的一个单词</td></tr>
+<tr><td class="left">C-d</td><td class="left">删除光标所在的字符</td></tr>
+<tr><td class="left">C-h</td><td class="left">删除光标前的一个字符，同 Backspace 键</td></tr>
+<tr><td class="left">M-d</td><td class="left">删除光标位置到光标所在单词末尾</td></tr>
+<tr><td class="left">C-y</td><td class="left">粘贴刚删除的内容</td></tr>
+<tr><td class="left">C-t</td><td class="left">交换光标所在字符与其前的字符</td></tr>
+<tr><td class="left">M-t</td><td class="left">交换光标所在的单词与前面单词的位置</td></tr>
+</tbody>
+</table>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">搜索</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">C-p</td><td class="left">上一条命令</td></tr>
+<tr><td class="left">C-n</td><td class="left">下一条命令</td></tr>
+<tr><td class="left">C-r</td><td class="left">逆向搜索命令历史记录（按下 C-g 退出搜索）</td></tr>
+<tr><td class="left">C-s</td><td class="left">（对 Zsh）正向搜索命令历史记录（按下 C-g 退出搜索），Bash 则锁住屏幕，按下 C-q 解锁屏幕</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">更多</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">C-m</td><td class="left">相当于“回车键”</td></tr>
+<tr><td class="left">C-i</td><td class="left">相当于 Tab</td></tr>
+<tr><td class="left">C-[</td><td class="left">相当于 Esc</td></tr>
+<tr><td class="left">C-l</td><td class="left">清屏</td></tr>
+<tr><td class="left">C-c</td><td class="left">中断命令输入</td></tr>
+<tr><td class="left">C-d</td><td class="left">退出 Shell</td></tr>
+<tr><td class="left">Shift+→/←</td><td class="left">Konsole 中切换多标签页</td></tr>
+<tr><td class="left">Ctrl+PageDown/PageUp</td><td class="left">Gnome Terminal 中切换多标签页</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">参考链接</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<ul>
+<li><a href="https://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing">Bash Manual</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="postamble">Update time: 2013-05-16T23:40+0800.</p> 
+</div>
+</body>
+</html>

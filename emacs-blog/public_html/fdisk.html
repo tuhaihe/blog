@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>fdisk: 磁盘分区命令</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="fdisk: 磁盘分区命令"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-05-10T21:43+0800"/>
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+
+<link href="css/org.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">fdisk: 磁盘分区命令</h1>
+
+<p>fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，如 Debian 等系统图形界面安装过程中有很好的图形工具，一般不会用它，但在尝试 Gentoo 过程中，就遇到该工具了。
+</p>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">常用参数简介</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+
+
+
+<pre class="example">$ fdisk -l [设备名称]
+</pre>
+
+
+<p>  
+设备，通常是下列之一：
+</p>
+<ul>
+<li>/dev/hd[a-h]
+</li>
+<li>/dev/sd[a-p]
+</li>
+</ul>
+
+
+<p>
+<code>/dev/hd[a-h]</code> 指 IDE 硬盘， <code>/dev/sd[a-p]</code> 指 SCSI 硬盘。
+</p>
+<ul>
+<li>例一
+</li>
+</ul>
+
+
+
+
+
+<pre class="example">$ sudo fdisk -l #该命令会列举出系统内所有可以找出的设备分区
+</pre>
+
+
+<ul>
+<li>例二
+</li>
+</ul>
+
+
+
+
+
+<pre class="example">$ sudo fdisk -l /dev/sda #该命令输出指定设备 /dev/sda 上所有的分区
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">使用 fdisk 创建分区、删除分区</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+以 8G U盘作为实验对象，U 盘设备名称是 /dev/sdc。输入下面命令即可进入 fdisk 的交互界面。
+</p>
+
+
+
+<pre class="example">$ sudo fdisk /dev/sdc
+</pre>
+
+
+<p>  
+我们会看到相应的输出结果：
+</p>
+
+
+
+
+<pre class="example">[tuhaihe@localhost ~]$ sudo fdisk /dev/sdc
+Welcome to fdisk (util-linux 2.22.2).
+
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Command (m for help): ①
+</pre>
+
+
+<p>  
+我们在 ① 处输入 m，可以查看到许多操作参数，和我们最密切的有下面五个：
+</p>
+
+<ul>
+<li>d   delete a partition，删除分区
+</li>
+<li>n   add a new partition，新建分区
+</li>
+<li>p   print the partition table，输出当前分区表
+</li>
+<li>q   quit without saving changes，退出，但不保存对现有分区作出的任何更改
+</li>
+<li>w   write table to disk and exit，将对分区表的更改写入磁盘（慎用！）
+</li>
+</ul>
+
+
+<p>   
+具体创建分区、删除分区步骤，可参考 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#fdisk">鸟哥私房菜站点</a>， 多练习几次就可以熟悉了。建议，可以建立一个虚拟机，在虚拟机进行测试，这样不会对用户数据造成毁灭性破坏。同时也要慎用 w 参数，拿捏不准干脆“q”一走了之。在创建完分区，<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#format">格式化分区</a>时， 注意交换分区(swap)分区格式化(<code>mkswap /dev/*</code>)后，还需要执行 <code>swapon</code> 来启动交换分区。
+</p>
+<p>
+该命令应用实例也可参考 <a href="http://www.gentoo.org/doc/zh_cn/handbook/handbook-x86.xml?part=1&amp;chap=4">Gentoo 手册：准备磁盘</a>。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">cfdisk：更加直观的分区命令</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+相比 fdisk，cfdisk 的界面更加直观和容易操作。可在二者之间选择一个更加适合自己的工具。(<a href="http://i.imgur.com/ceSKYRJ.png">cfdisk使用截图</a> )
+</p>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="postamble">Update time: 2013-05-10T21:43+0800.</p> 
+</div>
+</body>
+</html>

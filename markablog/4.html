@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<title>tuhaihe</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="title" content="tuhaihe">
+<meta name="author" content="tuhaihe"/>
+<meta name="description" content="关于Linux、开源、社区，笨兔兔博客. Personal blog about Linux, open source, community. "/>
+<meta name="keywords" content="linux, open source, debian, fedora, blog, community, 开源, 社区, debian, mageia, 博客, bentutu, 笨兔兔, tuhaihe, TUHAIHE"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href='css/02bootstrap.min.css' type='text/css' rel='stylesheet'>
+<link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
+<link href='css/01main.css' type='text/css' rel='stylesheet'>
+<link href='css/04normalize.css' type='text/css' rel='stylesheet'>
+<link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
+</head>
+<body>
+<div class='container'>
+<!--[if lt IE 7]>
+<p class="chromeframe">
+
+You are using an <strong>outdated</strong> browser. Please 
+<a href="http://browsehappy.com/">upgrade your browser</a> or 
+<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> 
+to improve your experience.
+
+</p>
+<![endif]-->
+
+<div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="text-center"><h1>tuhaihe <small>∑</small></h1></div>
+            
+            <div class="text-center" style="padding-bottom:10px;">
+        
+                <a href = 'index.html'>Index</a> | <a href = 'About.html'>About</a>
+        
+            </div>
+
+        </div>
+        
+        <div class = "span2"></div>
+</div>
+<div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>fdisk: 磁盘分区命令 <small><a href = '20130511fdisk-command-detail.html'>May 11th, 2013</a></small></h2>
+
+<h2>简介</h2>
+
+<p>fdisk 是 Linux 分区表操作工具。在一般 Linux 系统安装过程中，如 Debian 等系统图形界面安装过程中有很好的图形工具，一般不会用它，但在尝试 Gentoo 过程中，就遇到该工具了。目前，ArchLinux 安装过程也会用到 fdisk 命令进行磁盘分区。当然，在 FreeBSD 中也会用到。涉及到磁盘的重新规划，如果我们对该命令不熟悉，又会经常遇到它，那么磁盘中的数据随时都有可能被误删除，非常危险。所以，我们下面对这一命令进行下学习。</p>
+
+<h2>常用参数简介</h2>
+
+<pre class="prettyprint">
+<code>
+$ fdisk -l [设备名称]
+</code>
+</pre>
+
+<p>这里的设备，通常是下列之一：</p>
+
+<ul>
+<li>/dev/hd[a-h]</li>
+<li>/dev/sd[a-p]</li>
+</ul>
+
+<p>/dev/hd[a-h] 指 IDE 硬盘，/dev/sd[a-p] 指 SCSI 硬盘（常见）。</p>
+
+<ul>
+<li>例一
+<code>
+$ sudo fdisk -l #该命令会列举出系统内所有可以找出的设备分区
+</code></li>
+<li>例二
+<code>
+$ sudo fdisk -l /dev/sda #该命令输出指定设备 /dev/sda 上所有的分区
+</code></li>
+</ul>
+
+<h2>实战：使用 fdisk 创建&amp;删除分区</h2>
+
+<p>以 8G U盘作为实验对象，U 盘设备名称是 /dev/sdc。输入下面命令即可进入 fdisk 的交互界面。</p>
+
+<pre class="prettyprint">
+<code>
+ $ sudo fdisk /dev/sdc
+</code>
+</pre>
+
+<p>我们会看到相应的输出结果：</p>
+
+<pre>
+  [tuhaihe@localhost ~]$ sudo fdisk /dev/sdc
+  Welcome to fdisk (util-linux 2.22.2).
+
+  Changes will remain in memory only, until you decide to write them.
+  Be careful before using the write command.
+
+  Command (m for help): ①
+</pre>
+
+<p>我们在 ① 处输入 m，可以查看到许多操作参数，和我们最密切的有下面五个：</p>
+
+<ul>
+<li>d   delete a partition，删除分区</li>
+<li>n   add a new partition，新建分区</li>
+<li>p   print the partition table，输出当前分区表</li>
+<li>q   quit without saving changes，退出，但不保存对现有分区作出的任何更改</li>
+<li>w   write table to disk and exit，将对分区表的更改写入磁盘（慎用！）</li>
+</ul>
+
+<p>具体创建分区、删除分区步骤，可参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#fdisk">鸟哥私房菜站点</a>， 多练习几次就可以熟悉了。</p>
+
+<p><em>建议</em></p>
+
+<p>我们初学该命令，如果一开始就在真机上操作，那么很有可能造成误操作！我们可以建立一个虚拟机，在虚拟机进行测试，这样不会对数据造成毁灭性破坏。这里指出，大家要慎用 w 参数。如果对自己的操作捏不准干脆“q”一走了之。在创建完分区，<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem_3.php#format">格式化分区</a>时，注意交换分区(swap)分区格式化(<code class='prettyprint'>mkswap /dev/[设备名]</code>)后，还需要执行 <code class='prettyprint'>swapon</code> 启用交换分区。</p>
+
+<p>该命令应用实例也可参考 <a href="http://www.gentoo.org/doc/zh_cn/handbook/handbook-x86.xml?part=1&amp;chap=4">Gentoo 手册：准备磁盘</a>。</p>
+
+<h2>cfdisk：更加直观的分区命令</h2>
+
+<p>相比 fdisk，cfdisk 的界面更加直观和容易操作。可在二者之间选择一个更加适合自己的工具。不过，对于超过 2T 大小的硬盘进行分区，fdisk 就无能为力了。fdisk 目前仅支持 MBR，不支持 GPT 分区表，所以对于超过 2T 的硬盘分区可以选择 parted 命令。</p>
+
+<p>parted 命令支持读取包括 MS-DOS 和 GPT 在内的多种分区表格式，关于该命令，可查看更多：<code class='prettyprint'>man parted</code>。</p>
+
+<p><img src="http://i.imgur.com/ceSKYRJ.png" alt="cfdisk使用截图" title="" /></p>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>《包公案》小故事 <small><a href = '20130510baogongan-note.html'>May 10th, 2013</a></small></h2>
+
+<p>《包公案》，全名<a href="http://zh.wikipedia.org/zh-cn/%E5%8C%85%E5%85%AC%E6%A1%88link">《增像包龙图判百家公案》</a>，全书共十卷。主角当然是宋代包拯，因其为官清廉、不畏权贵、刚正不阿，民间称呼他为“包青天”。</p>
+
+<p>关于包青天的印象，还是小时候家里黑白电视机播放的 93 年版本的 236 集电视连续剧《包青天》。“开封有个包青天，铁面无私辨忠奸……王朝马汉在身边”，这样的旋律至今偶尔还会哼唱几句。不管你是什么皇亲国戚，还是什么官二代，死罪可免的活罪难逃，犯了死罪的该杀则杀，毫不留情。93 版本的包青天，演员表现出了包公的两面，不仅仅是“金刚怒目”，也有“菩萨低眉”。同时，还时刻强调了一个主题：天理昭彰，报应不爽；事出必有因，有因必有果的“因果报应”。警醒人们勿要暗室欺人，举头三尺有神明。在当今社会，这部电视剧仍对世人有很大的警醒作用，让那些“为官不为百姓，只为自己”、为富不仁、心术不正处处要害别人的人脑袋里面有所敬畏，看看那些铡刀下的教训！我们应当有所敬畏，天道有常，“出来混总是要还的”。</p>
+
+<p>该案序中有言：明镜当空，物无不照……世传为包公所断之案，往往有鬼神所不及觉；而信手拈来，奇幻莫测，人人莫测，所以然者，包公非有异术，不过明与公而已矣。“明”、“公”二字道出了事情本来面目，至于世间相传包公昼断阳间事、夜判阴间事情，这倒成虚妄了。如果为官的“一如明镜当空，物自遁形焉”，人人皆可为包公，哪里还有判不了的案子、解不了的异事呢？</p>
+
+<h2>故事一：<a href="http://www.zggdwx.com/baogong/67.html">善恶罔报</a></h2>
+
+<p>这讲了一个故事：话说东京有个叫姚汤的人家，三代积善，周人之急，济人之危，修桥补路，好事都干了，人人都说姚家必有好子孙在后头。西京有个赵伯仁，是宋代的宗室，他仗了自家是金枝玉叶，和皇帝一家人，霸占别人的田地和妻子，坏事也都干了。人人都说，赵伯仁倚了宗亲横行霸道，阳间的官拿他没有办法，到了阴间有他好果子吃。谁知道，姚家虽然积善做好事，后代全是些不肖子孙，没有一个出息的；赵家虽然行恶，但后代都是些好子孙，科举上榜的大有人在，家势却越来越旺。 </p>
+
+<p>姚汤死的不服，在阴间寻思着“凭啥做好事，没有好报呢”。</p>
+
+<p>他写了一个状子，告到包公那里，姚汤把自己做的几件拿得出手的好事又道了一遍，包公也把姓赵的祖宗叫赵伯仁的也叫来询问。包公一审，事情都明白了：赵家作恶的并不是赵家人，而是赵家的奴仆借着主子的势力为非作歹，所以“虽有不善的名色，其实本心存好，不过恶奴累了名头”；姓姚的，”一生行得好事，其实不曾存有好心。周人济人、修桥补路等不过舍几文铜钱买一个好名色，其实心上割舍不得，暗里还要算人“。</p>
+
+<p>表面行好事，背地里确是暗算别人的人，姚汤对“善恶报应”哪里还不服呢？</p>
+
+<h2>故事二：<a href="http://www.zggdwx.com/baogong/94.html">鬼推磨</a></h2>
+
+<p>故事里讲到：“有钱使得鬼推磨”，凭你做不来的事，有了银子便做得来了，这叫做“鬼推磨”。“有钱的做了高官，无钱的做个百姓。有钱的享福不尽，无钱的吃苦难当。有钱的得生，无钱的得死。总来，不晓得什么缘故，有人钻在钱眼里，钱偏不到你家来；有人不十分爱钱，钱偏往他家去。”</p>
+
+<p>一看到这里，便也觉得很有意思。为什么求财而不得财，不求财反而得财呢？</p>
+
+<p>这个故事的主人公一个是痴呆汉子张待诏，心上不十分爱钱，后来却发家了，人称张百万。一个是邻家的李博士，生来乖巧伶俐，钱财是东手来西手就去。后者见前者痴痴呆呆，但有钱用，自己一个聪明人偏没钱用，死后在阴间告到包公案下，求包老爷做主。</p>
+
+<p>包公一审，什么都明白了：张待诏不会算计，也不会做买卖，只是“今日省一文，明日省一文，省起来的”百万；伶俐奸滑的李博士，“骄人，做人，谋人，害人，无所不至”，钱神就一文不给他，就是给了他几百万也不够几日花销用尽。</p>
+
+<h2>结束</h2>
+
+<p>《包公案》里面这样值得令人深思的故事还有很多很多，但作奸犯科的没有不被惩罚的。想瞒得别人，却瞒不了自己，想瞒得自己，却瞒不了天。天网恢恢，疏而不漏，到底就是这么一回事情。</p>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Debian Wheezy(Xfce)启用触摸板点击功能 <small><a href = '20130509debian-wheezy-enable-xfce-touchpad.html'>May 09th, 2013</a></small></h2>
+
+<h2>问题描述</h2>
+
+<ul>
+<li><p>系统：Debian Wheezy Xfce。</p></li>
+<li><p>具体情况：虽然安装了 Xorg 触摸板输入的驱动(synaptics)，但是“点击”触摸板中间部分，仍然无法启用其相当于鼠标的“单击”功能。</p></li>
+</ul>
+
+<h2>解决方法</h2>
+
+<ol>
+<li><p>首先，保证安装了 synaptics 驱动：</p>
+
+<pre class="prettyprint">
+<code>
+$ sudo apt-get install xserver-xorg-input-synaptics
+</code>
+</pre></li>
+<li><p>复制 /usr/share/X11/xorg.conf.d 到 /etc/X11：</p>
+
+<pre class="prettyprint">
+<code>
+$ sudo cp -R /usr/share/X11/xorg.conf.d/ /etc/X11
+</code>
+</pre></li>
+<li><p>将原 /etc/X11/xorg.conf.d/10-evdev.conf 配置文件下面同一部分内容改为：</p>
+
+<pre class="prettyprint">
+<code>
+Section "InputClass"  
+        Identifier "evdev touchpad catchall"  
+        MatchIsTouchpad "on"  
+        MatchDevicePath "/dev/input/event*"  
+        Driver "synaptics"  
+        Option "TapButton1" "1"  
+        Option "TapButton2" "2"  
+        Option "TapButton2" "3"  
+EndSection
+</code>
+</pre>
+
+<p>关于上面文件中 <code class='prettyprint'>TapButton</code> 的使用，man 手册里面的解释为：</p></li>
+</ol>
+
+<blockquote>
+  <p>Option "TapButton1" "integer"
+   Which mouse button is reported on a non-corner one-finger tap.  Set  to
+   0 to disable. Property: "Synaptics Tap Action"</p>
+
+<p>Option "TapButton2" "integer"
+   Which  mouse button is reported on a non-corner two-finger tap.  Set to
+   0 to disable. Property: "Synaptics Tap Action"</p>
+
+<p>Option "TapButton3" "integer"
+   Which mouse button is reported on a non-corner three-finger  tap.   Set
+   to 0 to disable. Property: "Synaptics Tap Action"</p>
+</blockquote>
+
+<ol>
+<li>重启系统</li>
+</ol>
+
+<h2>关于 synaptics</h2>
+
+<p>synaptics 是触摸板的 Xorg 输入驱动。即使触摸板也可以由 evdev 或鼠标驱动处理，但该驱动能够允许触摸板实现更多的功能。synaptics 这个名称属历史沿袭，在 Linux 下，特定硬件有内核处理，但该驱动适用于任何触摸板。如果设备为“PS/2 Mouse”或更古老，内核驱动可能不会支持这样的设备，该驱动也会提供有限支持的功能。不过，适用于任何设备，不管功能多少，都是非常不错了。</p>
+
+<p><em>synaptics 部分功能列表</em> ：</p>
+
+<ul>
+<li>非线性加速触摸运动</li>
+<li>通过短暂触摸，实现单击/双击事件</li>
+<li>多指触摸：需要硬件支持</li>
+</ul>
+
+<p>关于 synaptics 的更多内容，可以在终端运行 <code class='prettyprint'>man synaptics</code> 进行查看。</p>
+
+<h3>synclient</h3>
+
+<p>除了运用上面方法进行设置之外，我们还可以使用命令 <em>synclient</em> 进行设置。synclient 就是查询、更改 Synaptics 驱动选项的一个命令行工具。不过该命令的设置只能在当前登录的会话中有效，如果注销或重启系统，则配置失效。可用参数有：</p>
+
+<ul>
+<li>-l，列出当前用户设置</li>
+</ul>
+
+<p>我们可以使用下面命令在当前会话实现上述设置：</p>
+
+<pre class="prettyprint">
+<code>
+$ synclient TapButton1=1
+$ synclient TapButton2=2
+$ synclient TapButton3=3
+</code>
+</pre>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>GNU Nano简介 <small><a href = '20130421gnu-nano.html'>April 21th, 2013</a></small></h2>
+
+<h2>简介</h2>
+
+<p>Nano 在 Debian 等系统中直接默认安装。它体积小、操作方便、上手快，在编辑文件时快捷灵活，在工作中给我带来了极大便利。希望没有用过 nano 的人们能够尝试这款文本编辑器。</p>
+
+<p><a href="http://www.nano-editor.org/">GNU Nano</a> 是一款小巧友好的文本编辑器。nano 是 Pico 编辑器的自由克隆版本，也是 Pico 的功能增强版本。</p>
+
+<p>功能列表：</p>
+
+<ul>
+<li>基本文本编辑</li>
+<li>搜索</li>
+<li>拼写检查</li>
+<li>国际化支持</li>
+<li>自动缩进</li>
+</ul>
+
+<p>当然，作为一款编辑器，具有上面的特点也不足为奇。如果连基本的编辑功能都处理不了，nano 也就不能成其为编辑器。</p>
+
+<h2>常用快捷键</h2>
+
+<p>nano 的许多操作快捷键与 Emacs 通用。其实，Emacs 里面的部分操作按键组合也适用在终端。</p>
+
+<pre class='prettyprint'><code>^G：^ 代表 Control 键
+M-G：M 一般为 Alt 键
+</code></pre>
+
+<table>
+    <tr>
+        <td>^X</td><td>退出 nano</td>
+    </tr>
+   <tr>
+        <td>^O</td><td>保存文件</td>
+    </tr>
+    <tr>
+        <td>^R</td><td>插入其他文件内容至光标位置</td>
+    </tr>
+    <tr>
+        <td>^W</td><td>查找字符串</td>
+    </tr>
+    <tr>
+        <td>^Y</td><td>向上翻页</td>
+    </tr>
+    <tr>
+        <td>^V</td><td>向下翻页</td>
+    </tr>
+    <tr>
+        <td>^K</td><td>剪切光标所在行并保存到剪贴板，或剪切选中内容</td>
+    </tr>
+    <tr>
+        <td>^U</td><td>将剪贴板内容粘贴至当前行</td>
+    </tr>
+    <tr>
+        <td>^C</td><td>显示光标位置</td>
+    </tr>
+    <tr>
+        <td>M-/ (M-?)</td><td>跳至文件最后一行</td>
+    </tr>
+    <tr>
+        <td>M-G</td><td>跳至指定行与列位置</td>
+    </tr>
+    <tr>
+        <td>M-R</td><td>替换字符串</td>
+    </tr>
+    <tr>
+        <td>M-A</td><td>标记游标所在文字</td>
+    </tr>
+    <tr>
+        <td>M-W</td><td>重复上次搜索</td>
+    </tr>
+    <tr>
+        <td>M-^ (M-6)</td><td>拷贝当前行至剪贴板</td>
+    </tr>
+    <tr>
+        <td>M-}</td><td>缩进当前行</td>
+    </tr>
+    <tr>
+        <td>M-{</td><td>取消缩进当前行</td>
+    </tr>
+    <tr>
+        <td>^F</td><td>向前移动一个字符</td>
+    </tr>
+    <tr>
+        <td>^B</td><td>向后移动一个字符</td>
+    </tr>
+    <tr>
+        <td>^Space</td><td>向前移动一个词</td>
+    </tr>
+    <tr>
+        <td>M-Space</td><td>向后跳一个词</td>
+    </tr>
+    <tr>
+        <td>^P</td><td>鼠标转到上一行</td>
+    </tr>
+    <tr>
+        <td>^N</td><td>鼠标转到下一行</td>
+    </tr>
+    <tr>
+        <td>^A</td><td>跳至当前行首</td>
+    </tr>
+    <tr>
+        <td>^E</td><td>跳至当前行尾</td>
+    </tr>
+    <tr>
+        <td>M-( (M-9)</td><td>跳至当前段落开头，如已在段落开头，则调至上一段落起始处</td>
+    </tr>
+    <tr>
+        <td>M-) (M-0)</td><td>跳至当前段落结尾，如已在段落结尾，则调至下一段落结尾</td>
+    </tr>
+    <tr>
+        <td>^M</td><td>插入新行</td>
+    </tr>
+    <tr>
+        <td>^D</td><td>删除游标之下的字符</td>
+    </tr>
+    <tr>
+        <td>^H</td><td>删除游标左侧的字符</td>
+    </tr>
+    <tr>
+        <td>M-T</td><td>从游标位置剪切至文件结尾</td>
+    </tr>
+    <tr>
+        <td>M-D</td><td>计算字数、行数与字符数</td> 
+    </tr>
+</table>
+
+<h2>nano 辅助功能说明</h2>
+
+<p><em>提示</em>： </p>
+
+<ol>
+<li><p>^Space 按键可能与中文输入法调出按键冲突，如冲突，则该按键组合在 nano 编辑器内失效。 </p></li>
+<li><p>如果使用 nano 打开文本文件时，出现“/home/用户名/.nano_history 出错：权限问题”报告，可使用下面步骤解决：</p>
+
+<ul>
+<li><p>打开 /etc/nanorc 文件，将 set historylog 一行注释：</p>
+
+<p>$sudo nano /etc/nanorc #注释 set historylog，保存退出 </p></li>
+<li><p>删除 ~/.nano_history</p>
+
+<p>sudo rm ~/.nano_history</p></li>
+</ul></li>
+</ol>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class = 'row-fluid'><div class = 'span8 offset2'><a href='1.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a></div></div><footer id="footer">
+		<p class='text-center'>tuhaihe, 2013. Powered by Markablog.</p>
+</footer>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXXXXX', '');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</div>
+</body>
+</html>
