@@ -1,1 +1,3 @@
-tuhaihe.com blog powered by Emacs orgmode.
+tuhaihe.com blog powered by Markablog.
+
+Thanks to the developer [PLJNS](http://github.com/PLJNS/Markablog).
