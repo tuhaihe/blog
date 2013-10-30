@@ -25,20 +25,19 @@ $ sudo cp -R /usr/share/X11/xorg.conf.d/ /etc/X11
 </code>
 </pre>
 
-3. 将原 /etc/X11/xorg.conf.d/10-evdev.conf 配置文件下面同一部分内容改为：
+3. 将原 /etc/X11/xorg.conf.d/50-synaptics.conf 配置文件下面同一部分内容改为：
 
    <pre class="prettyprint">
-<code>
-    Section "InputClass"  
-            Identifier "evdev touchpad catchall"  
-            MatchIsTouchpad "on"  
-            MatchDevicePath "/dev/input/event*"  
-            Driver "synaptics"  
-            Option "TapButton1" "1"  
-            Option "TapButton2" "2"  
-            Option "TapButton2" "3"  
-    EndSection
-</code>
+     Section "InputClass"
+            Identifier "touchpad catchall"
+	    Driver "synaptics"
+            MatchIsTouchpad "on"
+            MatchDevicePath "/dev/input/event*"
+	    Option "TapButton1" "1"
+	    Option "TapButton2" "2"
+	    Option "TapButton3" "3"
+	    Option "VertEdgeScroll" "1"
+     EndSection
 </pre>
 
     关于上面文件中 `TapButton` 的使用，man 手册里面的解释为：
