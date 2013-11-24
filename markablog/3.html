@@ -49,6 +49,125 @@ to improve your experience.
 <div class="row-fluid">
     <article class="span8 offset2 well">
 
+<h2>Git 基本操作指南 <small><a href = '20130609how-to-use-git.html'>June 09th, 2013</a></small></h2>
+
+<h2>简介</h2>
+
+<p>Linux 内核和 Git 是 Linus 迄今最为杰出的 2 个伟大作品。Git 这个分布式的版本控制系统，由开始开发到项目发布，仅用了 3 天时间。</p>
+
+<p>学会使用 Git，是每个人的必修技能。</p>
+
+<pre class="prettyprint">
+<code>
+$ sudo apt-get install git # Debian 系列
+</code>
+</pre>
+
+<h2>基本操作</h2>
+
+<ol>
+<li><p>设置用户信息</p>
+
+<p>Git 配置文件为 ~/.gitconfig 或系统全局设置 /etc/gitconfig。</p>
+
+<pre class="prettyprint">
+<code>
+$ git config --global user.name tuhaihe #该昵称显示在提交时使用
+$ git config –-global user.email zhsan@gmail.com #该邮箱提交时使用
+</code>
+</pre>
+
+<p>在上述设置完毕后，可运行下面命令查看自己的设置：</p>
+
+<pre class="prettyprint">
+<code>
+$ git config user.name
+$ git config user.email
+</code>
+</pre></li>
+<li><p>创建仓库(以 Github 为例)</p>
+
+<ul>
+<li>在 Github 创建账号后，点击 <a href="https://github.com/new">New Repository</a>，填写与本仓库相关的信息，如仓库名称、描述、是否公开。设置完毕后，点击“Create repository”即可创建新仓库。如，建立 test。</li>
+<li>仓库创建完毕，我们开始创建 README 文件，这个是对仓库的详细介绍，或者写些你认为重要的描述。</li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+$ mkdir ~/test #本地创建 test 文件夹
+$ cd test/
+$ git init #初始化 Git 仓库
+$ touch README #创建README，但该文件尚未添加到版本库
+</code>
+</pre></li>
+<li><p>提交文件到版本库</p>
+
+<pre class="prettyprint">
+<code>
+$ git add README #将创建的 README 文件加入到版本库
+$ git commit -m "commit README" #将文件提交到版本库
+$ git log #查看提交日志
+</code>
+</pre></li>
+<li><p>推送到 Github 远程仓库</p>
+
+<p>上述一系列操作，我们只是在本地建立了一个 Git 版本库，我们还需要将其推送到远程服务器(Github 仓库)。完成下述操作后，我们就可以在 Github 页面上看到我们提交的文件了。</p>
+
+<pre class="prettyprint">
+<code>
+$ git remote add origin https://github.com/tuhaihe/test.git
+$ git push origin master #推送到Github test仓库主枝，一般默认为 master
+</code>
+</pre></li>
+<li><p>更多操作</p>
+
+<ul>
+<li>查看修改后的文件与版本库中的文件差异</li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+$ git diff
+</code>
+</pre>
+
+<ul>
+<li>查看状态</li>
+</ul>
+
+<pre class="prettyprint">
+<code>
+$ git status
+</code>
+</pre></li>
+<li><p>需要注意的几个问题</p>
+
+<ul>
+<li>使用 <code class='prettyprint'>rm ~/file.txt</code> 删除了本地仓库中的文件，但在远程仓库中仍旧存在。
+解释：使用 rm 只是删除了本地文件，并没有将 file.txt 从版本库中删除，可以使用 git rm file.txt 将该文件从版本库中删除。</li>
+<li>使用 <code class='prettyprint'>git clone</code> 克隆的仓库无法提交更改。
+解释：git 支持 SSH 协议、HTTP 协议、Git 协议进行数据传输。SSH 协议支持读写操作，通过 HTTP 和 Git 协议克隆下来的仓库仅只读(如果要支持写，需要进行设置)，建议使用 SSH 协议进行克隆。</li>
+<li>Git 版本控制三部曲：“git add-->git commit-->git push”。</li>
+</ul></li>
+</ol>
+
+<h2>更多资料</h2>
+
+<ul>
+<li>《Git 权威指南》，蒋鑫著</li>
+<li><a href="http://git-scm.com/book/zh">《Pro Git》中文版</a></li>
+<li><a href="http://rogerdudler.github.io/git-guide/index.zh.html">Git - 简易指南</a>：入门教程</li>
+<li><a href="http://marklodato.github.io/visual-git-guide/index-zh-cn.html">图解 Git</a></li>
+<li><a href="http://gitref.org/index.html">Git Reference</a></li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><div class="row-fluid">
+    <article class="span8 offset2 well">
+
 <h2>Ubuntu 13.04安装Linux Deepin特色软件 <small><a href = '20130608ubuntu-add-linuxdeepin-repo.html'>June 08th, 2013</a></small></h2>
 
 <p>最新版本的 Linux Deepin 12.12 RC 已经将基础仓库升级到了 Ubuntu Raring，Linux Deepin 开发的特色软件，简单易用，其他发行版本的开发者应该尽量移植。因为 Linux Deepin 使用了 Ubuntu 的基础仓库，所以，Ubuntu 用户安装 Linux Deepin 软件相对容易一些。</p>
@@ -399,111 +518,6 @@ $ ./theme_chooser.sh #运行提示符主题选择工具
 <li><a href="https://github.com/robbyrussell/oh-my-zsh/wiki">oh-my-zsh wiki</a></li>
 <li><a href="https://wiki.archlinux.org/index.php/Zsh_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">Archlinux Wiki</a></li>
 <li><a href="http://zh.opensuse.org/SDB:Zsh">OpenSUSE Wiki</a></li>
-</ul>
-
-    
-    </article>
-    
-    <div class = "span2"></div>
-</div><div class="row-fluid">
-    <article class="span8 offset2 well">
-
-<h2>Tar、zipg2、zip用法备注 <small><a href = '20130513tar-zip2-gzip-detail.html'>May 13th, 2013</a></small></h2>
-
-<h2>Tar(tape archiver)</h2>
-
-<p>它起初被用来在磁带上创建归档文件。Tar 最基本的功能就是把众多文件集合在一个文件中（生成归档文件），避免文件零散摆放，并不包括压缩功能（降低文件硬盘占有空间）。Tar 只有和其他压缩命令结合在一起，才能发挥压缩文件功能。</p>
-
-<p>常用参数： </p>
-
-<ul>
-<li>-c, --create      建立新归档文件</li>
-<li>-t, --list        列出归档中的文件目录</li>
-<li>-x, -extract      解包/解压缩</li>
-<li>-j, --bzip2, --bunzip2    用bzip2压缩/解压缩归档          </li>
-<li>-z, --gzip, --ungzip  用gzip压缩/解压缩归档</li>
-<li>-v, --verbose     详细显示处理的文件</li>
-<li>-f, --file        指定归档文件</li>
-<li>-C, --directory DIR   解压到指定目录</li>
-<li>-Z, --(un)compress</li>
-</ul>
-
-<p>了解了上面常用的参数选项后，基本了解了如何归档/压缩/解压缩日常面临的对应文件了。</p>
-
-<h2>压缩命令 gzip</h2>
-
-<p>使用 gzip 压缩后的文件名后缀常为 .gz；解压缩支持由 gzip、zip、compress 产生的压缩文件格式，所以支持 .gz, -gz, .z, -z, _z, .Z 结尾并具有正确标志头的文件。同时，它也可以识别 .tgz(-> .tar.gz) 和 .taz(-> .tar.Z)</p>
-
-<p>我们总结下，结尾包括下列的压缩文件皆可用 gzip 解压：</p>
-
-<ul>
-<li>.gz</li>
-<li>-gz</li>
-<li>.z</li>
-<li>-z</li>
-<li>_z</li>
-<li>.Z</li>
-<li>tar.gz(解为 tar 包, tar 解压缩时结合参数 -z)</li>
-</ul>
-
-<h2>压缩命令 bzip2</h2>
-
-<p>bzip2 支持解压缩的文件格式：</p>
-
-<ul>
-<li>.bz2</li>
-<li>.bz</li>
-<li>.tbz2（tar 解压缩时结合参数 -j）</li>
-<li>.tbz(同上)</li>
-</ul>
-
-<h2>使用举例</h2>
-
-<ol>
-<li><p>解开 *.tar</p>
-
-<pre class="prettyprint">
-<code>
-abc.tar : tar xvf abc.tar
-</code>
-</pre></li>
-<li><p>解压缩 *.tar.gz / *.tgz</p>
-
-<pre class="prettyprint">
-<code>
-abc.tar.gz : tar zxvf abc.tar.gz
-abc.tgz : tar zxvf abc.tar.gz
-</code>
-</pre></li>
-<li>解压缩 *.tar.bz2 / *.tbz
-<pre class="prettyprint">
-<code>
-abc.tar.bz2 : tar jxvf abc.tar.bz2
-abc.tbz : tar jxvf abc.tbz
-</code>
-</pre></li>
-<li>解压缩 *.tar.Z
-<pre class="prettyprint">
-<code>
-abc.tar.Z : tar -Zxvf abc.tar.Z 
-</code>
-</pre></li>
-</ol>
-
-<h2>zip &amp; rar</h2>
-
-<p>tar 和 gzip\bzip2 往往联合使用，后者常针对单个文件进行解压/压缩，但无“打包”功能。zip：pacakge and comrepss(archive) files.</p>
-
-<p><em>提示</em></p>
-
-<p>使用 tar 解压缩文件时，有时候我们会针对不同的压缩文件格式记忆不同的参数，其实，最新版本的 tar 就不必这样麻烦了。我们只需要执行<code class='prettyprint'>tar xvf *.tar.Z/*.tar.gz/*.tgz/*.tbz/*.tar.bz2</code>这样就可以了！真的相当方便！</p>
-
-<h2>参考链接</h2>
-
-<ul>
-<li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress_3.php">鸟哥的私房菜</a></li>
-<li><a href="http://tldp.org/LDP/GNU-Linux-Tools-Summary/html/backing-up-files.html">GNU/Linux Command Line Tools Summary: Archiving Files</a></li>
-<li><a href="https://wiki.archlinux.org/index.php/Tar">Archlinux Wiki:Tar</a></li>
 </ul>
 
     
